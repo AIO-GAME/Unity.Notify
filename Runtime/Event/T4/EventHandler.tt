@@ -1,0 +1,36 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+// ReSharper disable InconsistentNaming
+// ReSharper disable All
+/*|✩ - - - - - - - - - - |||
+|||✩ Automatic Generate  |||
+|||✩ - - - - - - - - - - |*/
+
+using System;
+
+namespace AIO.UEngine
+{
+<#
+    var numbers = 9;
+    for (var i = 0; i <= numbers; ++i)
+    {
+        var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
+        var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
+        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+#>
+    public abstract class EventHandler<#= i > 0 ? $"<{type}> " : "" #> : IEventHandler
+    {
+        public abstract int Key { get; }
+    
+        public EventHandler() { EventSystem.AddListener<#= i > 0 ? $"<{type}>" : "" #>(Key, Invoke); }
+
+        protected abstract void Invoke(<#= param #>);
+    }
+
+<#
+    }
+#>
+}

@@ -1,0 +1,27 @@
+{
+  "name": "com.aio.notify",
+  "displayName": "AIO Unity Notify",
+  "description": "AIO Unity Notify is a simple and easy-to-use library for Unity that allows you to create and manage tasks and timers.",
+  "version": "1.0.0-preview",
+  "unity": "2019.4",
+  "category": "Runtime",
+  "unityRelease": "0f1",
+  "license": "MIT",
+  "documentationUrl": "https://github.com/AIO-GAME/Unity.Notify#readme",
+  "changelogUrl": "https://github.com/AIO-GAME/Unity.Notify/commits/main",
+  "licensesUrl": "https://github.com/AIO-GAME/Unity.Notify/blob/main/LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AIO-GAME/Unity.Notify.git"
+  },
+  "relatedPackages": {},
+  "keywords": [
+    "notify",
+    "unity"
+  ],
+  "author": {
+    "name": "AIO GAME",
+    "url": "https://github.com/AIO-GAME/Unity.Notify"
+  },
+  "type": "library"
+}
