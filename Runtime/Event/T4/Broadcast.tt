@@ -1,0 +1,84 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+// ReSharper disable InconsistentNaming
+// ReSharper disable All
+/*|✩ - - - - - - - - - - |||
+|||✩ Automatic Generate  |||
+|||✩ - - - - - - - - - - |*/
+<#
+    var numbers = 9;
+#>
+using System;
+
+namespace AIO.UEngine
+{
+    partial class EventSystem
+    {
+<#
+    for (var i = 0; i <= numbers; ++i)
+    {
+        var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
+        var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
+        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+#>
+        #region Broadcast<#= i > 0 ? $"<{type}>" : "" #>
+
+        public static void Broadcast<#= i > 0 ? $"<{type}>" : "" #>(int key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false)
+        {
+            if (!RelayParams.TryGetValue(key, out var value)) return;
+            if (!(value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)) return;
+            if (immediately) relay.Dispatch(<#= ins #>);
+            else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+        }
+
+        #endregion
+
+<#
+    }
+#>
+        #region Broadcast
+
+<#
+    for (var i = 0; i <= numbers; ++i)
+    {
+        var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
+        var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
+        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+#>
+        public static void Broadcast<#= i > 0 ? $"<{type}>" : "" #>(string key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+<#
+        if (i == 0)
+        {
+#>
+            Broadcast(key.GetHashCode(), immediately);
+<#
+        }
+        else
+        {
+#>
+            var value = key.GetHashCode()
+<#
+            for (var j = 1; j <= i; j++)
+            {
+#>
+                    + typeof(T<#= j #>).GetHashCode()<#= j <= i ? " * 3" : "" #><#= j == i ? ";" : "" #>
+<#
+            }
+#>
+            Broadcast(value, <#= ins #>, immediately);
+<#
+        }
+#>
+        }
+
+<#
+    }
+#>
+        #endregion
+    }
+}

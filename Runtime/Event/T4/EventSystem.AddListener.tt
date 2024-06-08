@@ -1,0 +1,67 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+// ReSharper disable InconsistentNaming
+// ReSharper disable All
+/*|✩ - - - - - - - - - - |||
+|||✩ Automatic Generate  |||
+|||✩ - - - - - - - - - - |*/
+
+using System;
+
+namespace AIO.UEngine
+{
+    partial class EventSystem
+    {
+<#
+    var numbers = 9;
+
+    for (var i = 0; i <= numbers; ++i)
+    {
+        var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
+        var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
+        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+#>
+        public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        {
+            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay;
+            if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
+            else RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
+            relay?.AddListener(action);
+        }
+
+        public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(string name, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        {
+            if (string.IsNullOrEmpty(name)) return;
+<#
+        if (i == 0)
+        {
+#>
+            AddListener(name.GetHashCode(), action);
+<#
+        }
+        else
+        {
+#>
+            var key = name.GetHashCode()
+<#
+            for (var j = 1; j <= i; j++)
+            {
+#>
+                    + typeof(T<#= j #>).GetHashCode()<#= j <= i ? " * 3" : "" #><#= j == i ? ";" : "" #>
+<#
+            }
+#>
+            AddListener(key, action);
+<#
+        }
+#>
+        }
+
+<#
+    }
+#>
+    }
+}
