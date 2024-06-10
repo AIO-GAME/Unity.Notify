@@ -19,9 +19,9 @@
     "notify",
     "unity"
   ],
+  "type": "library",
   "author": {
     "name": "AIO GAME",
-    "url": "https://github.com/AIO-GAME/Unity.Notify"
-  },
-  "type": "library"
+    "url": "https://github.com/AIO-GAME"
+  }
 }

@@ -1,43 +1,43 @@
-```
- ██╗   ██╗███╗   ██╗██╗████████╗██╗   ██╗    █████╗ ███████╗███████╗███████╗████████╗
- ██║   ██║████╗  ██║██║╚══██╔══╝╚██╗ ██╔╝   ██╔══██╗██╔════╝██╔════╝██╔════╝╚══██╔══╝
- ██║   ██║██╔██╗ ██║██║   ██║    ╚████╔╝    ███████║███████╗███████╗█████╗     ██║   
- ██║   ██║██║╚██╗██║██║   ██║     ╚██╔╝     ██╔══██║╚════██║╚════██║██╔══╝     ██║   
- ╚██████╔╝██║ ╚████║██║   ██║      ██║      ██║  ██║███████║███████║███████╗   ██║    
-  ╚═════╝ ╚═╝  ╚═══╝╚═╝   ╚═╝      ╚═╝      ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝  
-```
-<p align="center"> <a href="README_EN.md"> English </a> | 简体中文 </p>
-<p align="center">
-<a href="https://github.com/AIO-GAME/Unity.Asset.CLI/security/policy"> <img alt="" src="https://img.shields.io/github/package-json/unity/AIO-GAME/Unity.Asset.CLI"> </a>
-<a href="https://github.com/AIO-GAME/Unity.Asset.CLI/blob/main/LICENSE.md"> <img alt="" src="https://img.shields.io/github/license/AIO-GAME/Unity.Asset.CLI"> </a>
-<a href="https://img.shields.io/github/languages/code-size/AIO-GAME/Unity.Asset.CLI"> <img alt="" src="https://img.shields.io/github/languages/code-size/AIO-GAME/Unity.Asset.CLI"> </a>
-<a href="https://github.com/AIO-GAME/Unity.Asset.CLI/issues"> <img alt="" src="https://img.shields.io/github/issues/AIO-GAME/Unity.Asset.CLI"> </a>
+<p align="center"> 
+<img src="RES/Logo.svg" width="256" height="256" alt="https://github.com/AIO-GAME"> 
 </p>
+<p align="center" style="font-size: 24px;"> 
+<b>Unity Notify</b>
+</p>
+<p align="center"><a href="README_EN.md">English</a> | 简体中文</p>
 <p align="center">
-<a href="https://github.com/AIO-GAME/Unity.Asset.CLI/tags"> <img alt="" src="https://img.shields.io/github/package-json/version/AIO-GAME/Unity.Asset.CLI"> </a>
-<a href="https://openupm.com/packages/com.aio.cli.asset/"> <img alt="" src="https://img.shields.io/npm/v/com.aio.cli.asset?label=openupm&amp;registry_uri=https://package.openupm.com" /> </a>
-<a href="https://github.com/AIO-GAME/Unity.Asset.CLI"> <img alt="" src="https://img.shields.io/github/stars/AIO-GAME/Unity.Asset.CLI"> </a>
+<a href="https://github.com/AIO-GAME/Unity.Notify/security/policy"> 
+<img alt="" src="https://img.shields.io/github/package-json/unity/AIO-GAME/Unity.Notify"> 
+</a>
+<a href="https://github.com/AIO-Game/Unity.Notify">
+<img src="https://img.shields.io/github/license/AIO-Game/Unity.Notify" alt=""/>
+</a>
+<a href="https://github.com/AIO-Game/Unity.Notify">
+<img src="https://img.shields.io/github/languages/code-size/AIO-Game/Unity.Notify?label=size" alt=""/>
+</a>
+<a href="https://openupm.com/packages/com.aio.notify/">
+<img src="https://img.shields.io/npm/v/com.aio.notify?label=openupm&amp;registry_uri=https://package.openupm.com" alt=""/>
+</a>
 </p>
 
-### ⚙ 安装
+## ⚙ 安装
 
 <details>
 <summary>
-<span style="color: deepskyblue; "> <b> Packages Manifest </b> </span>
+<span style="color: deepskyblue; "><b>Packages Manifest</b></span>
 </summary>
 
 ````json
 {
   "dependencies": {
-    "com.aio.cli.asset": "latest"
+    "com.aio.notify": "latest"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
-        "com.aio.cli.asset",
-        "com.aio.package"
+        "com.aio.notify"
       ]
     }
   ]
@@ -48,69 +48,105 @@
 
 <details>
 <summary>
-<span style="color: deepskyblue; "> <b> Unity PackageManager </b> </span>
+<span style="color: deepskyblue; "><b>Unity PackageManager</b></span>
 </summary>
 
-> openupm *中国版*
->> `Name: package.openupm.cn`
-> > `URL: https://package.openupm.cn`
-> > `Scope(s): com.aio.cli.asset`
->
-> openupm *国际版*
->> `Name: package.openupm.com`
-> > `URL: https://package.openupm.com`
-> > `Scope(s): com.aio.cli.asset`
+> open upm *中国版*
+
+~~~
+Name: package.openupm.cn
+URL: https://package.openupm.cn
+Scope(s): com.aio.notify
+~~~
+
+> open upm *国际版*
+
+~~~
+Name: package.openupm.com
+URL: https://package.openupm.com
+Scope(s): com.aio.notify
+~~~
 
 </details>
 
 <details>
 <summary>
-<span style="color: deepskyblue; "> <b> Command Line </b> </span>
+<span style="color: deepskyblue; "><b>Command Line</b></span>
 </summary>
 
-> *openupm-cli*
->> `openupm add com.aio.cli.asset`
+> open *upm-cli*
+
+~~~
+openupm add com.aio.notify
+~~~
 
 </details>
 
-### ⭐ 关于
+## ⭐ 关于
 
-- **这是 Unity 的资源加载接口(CLI)包。它提供了一组命令和工具来增强效率和开发体验。**
+- **Unity Notify** 是一个轻量级的事件通知系统，支持事件订阅、广播和取消订阅。
+- ✅ **支持** 事件类实现。
+- ✅ **支持** 事件参数传递。
+- ✅ **支持** 事件参数泛型。
+- ✅ **支持** 事件优先级。
+- ✅ **支持** 事件订阅。
+- ✅ **支持** 事件取消订阅。
+- ✅ **支持** 事件广播执行基于协程，不阻塞主线程。
+- ✅ **支持** 事件自动注册。
+- ✅ **支持** 事件自动取消注册。
+- ✅ **支持** 事件自动广播。
+- ✅ **支持** 事件自动优先级。
 
-> [!IMPORTANT]
-> - ✅ **支持 Unity 2019.4 及以上版本**
-> - ✅ **支持 资源 同步加载/异步加载/协程加载 接口**
-> - ✅ **支持 资源 本地模式/远程模式/编译器模式 接口**
-> - ✅ **支持 空包 首包 整包 自定义分包**
-> - ✅ **支持 Android/iOS/Windows/Mac/WebGL**
-> - ✅ **支持 CI/CD 流水线资源打包**
-> - ✅ **支持 .NET 4.x**
-> - ✅ **支持 il2cpp**
-> - ✅ **支持 Unity 增量构建**
-> - ✅ **支持 [UniTask](https://github.com/Cysharp/UniTask)**
-> - ✅ **支持 [YooAsset](https://github.com/tuyoogame/YooAsset)**
-> - ❌ **支持 [XAsset](https://github.com/xasset/xasset)**
-> - ❌ **支持 [Addressable](https://github.com/Unity-Technologies/Addressables-Sample)**
-> - ❌ **支持 自定义代理第三方插件**
+## 📚 使用
 
-### 📖 文档
+<h4>初始化</h4>
 
-- [_**文档目录**_](https://github.com/AIO-GAME/Unity.Asset.CLI/wiki)
-- [_**API**_](./API_USAGE/AssetSystem.md)
-- [_**配置讲解**_](./API_USAGE/Config.md)
-- [_**工具使用**_](./API_USAGE/ToolWindow.md)
+```csharp 
+EventSystem.Initialize();
+``` 
 
-### 🔗 第三方参考资料和工具
+<h4>注册事件</h4>
 
-**Please refer to the wiki for a list of references and tools used in this package.**
+```csharp
+AddListener.AddListener(eid, OnEvent);
+AddListener.AddListener<[T1~T9]>(eid, OnEvent);
+``` 
 
-|                         **Doc**                          |                     **Description**                     |
-|:--------------------------------------------------------:|:-------------------------------------------------------:|
-|     **[Common](https://github.com/AIO-GAME/Common)**     |         _**C# Unity 通用基础函数库,用于帮助研发团队快速构建框架。**_          |
-| **[UniTask](https://github.com/Cysharp/UniTask#readme)** |      _**为 Unity 提供了一个有效的分配自由的 async / await 集成。**_      |
-|         **[YooAsset](https://www.yooasset.com)**         | _**YooAsset 是一套用于 Unity3D 的资源管理系统，用于帮助研发团队快速部署和交付游戏。**_ |
+<h4>广播事件</h4>
 
-### ✨ 贡献者
+```csharp
+AddListener.Broadcast(eid);
+AddListener.Broadcast(eid, [T1~T9]);
+```  
+
+<h4>注销事件</h4>
+
+```csharp
+AddListener.RemoveListener(eid, OnEvent);
+AddListener.RemoveListener<[T1~T9]>(eid, OnEvent);
+AddListener.RemoveListener(eid);
+```  
+
+<h4>自动注册事件</h4>
+
+```csharp
+public class EventListener1 : EventHandler
+{
+    public override int Key { get; } => 0;
+    
+    protected override void Invoke() => Console.WriteLine("OnEvent");
+}
+
+public class EventListener2 : EventHandler<[T1~T9]>
+{
+    public override int Key { get; } => 0;
+    
+    protected override void Invoke(<[T1~T9]> args) => Console.WriteLine("OnEvent");
+}
+
+``` 
+
+## ✨ 贡献者
 
 <!-- readme: collaborators,contributors -start -->
 <table>
@@ -123,19 +159,12 @@
                     <sub><b>xinansky</b></sub>
                 </a>
             </td>
-            <td align="center">
-                <a href="https://github.com/Starkappa">
-                    <img src="https://avatars.githubusercontent.com/u/155533864?v=4" width="64;" alt="Starkappa"/>
-                    <br />
-                    <sub><b>Starkappa</b></sub>
-                </a>
-            </td>
 		</tr>
 	<tbody>
 </table>
 <!-- readme: collaborators,contributors -end -->
 
-### 📢 致谢
+## 📢 致谢
 
 - **谢谢您选择我们的扩展包。**
 - **如果此软件包对您有所帮助。**
