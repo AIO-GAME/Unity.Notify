@@ -108,23 +108,23 @@ EventSystem.Initialize();
 <h4>注册事件</h4>
 
 ```csharp
-AddListener.AddListener(eid, OnEvent);
-AddListener.AddListener<[T1~T9]>(eid, OnEvent);
+EventSystem.AddListener(eid, OnEvent);
+EventSystem.AddListener<[T1~T9]>(eid, OnEvent);
 ``` 
 
 <h4>广播事件</h4>
 
 ```csharp
-AddListener.Broadcast(eid);
-AddListener.Broadcast(eid, [T1~T9]);
+EventSystem.Broadcast(eid);
+EventSystem.Broadcast(eid, [T1~T9]);
 ```  
 
 <h4>注销事件</h4>
 
 ```csharp
-AddListener.RemoveListener(eid, OnEvent);
-AddListener.RemoveListener<[T1~T9]>(eid, OnEvent);
-AddListener.RemoveListener(eid);
+EventSystem.RemoveListener(eid, OnEvent);
+EventSystem.RemoveListener<[T1~T9]>(eid, OnEvent);
+EventSystem.RemoveListener(eid);
 ```  
 
 <h4>自动注册事件</h4>
