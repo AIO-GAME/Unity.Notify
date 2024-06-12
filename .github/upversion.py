@@ -8,7 +8,7 @@ import requests
 from tqdm import tqdm
 
 
-def get_latest_github_tag(repo_url) -> str | None:
+def get_latest_github_tag(repo_url) -> str:
     # 从仓库 URL 提取用户和仓库名称
     repo_path = repo_url.split("https://github.com/")[1].replace(".git", "")
     print(f"Fetching tags from {repo_path}")
@@ -97,7 +97,7 @@ def read_local_email() -> str:
     return result.stdout.decode('utf-8').strip()
 
 
-def read_current_version() -> str | None:
+def read_current_version() -> str:
     try:
         subprocess.run(['git', 'fetch', '--tags'], check=True)
         tags = os.popen("git tag").read().split("\n")
