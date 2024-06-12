@@ -21,7 +21,7 @@
     "notify",
     "unity"
   ],
-  "type": "library",
+  "type": "module",
   "author": {
     "name": "AIO GAME",
     "url": "https://github.com/AIO-GAME"
