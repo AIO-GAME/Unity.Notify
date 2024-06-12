@@ -170,6 +170,7 @@ with open("package.json", "r+") as f:
     package["version"] = new_version
     package["relatedPackages"]["com.aio.runner"] = get_latest_github_tag('https://github.com/AIO-GAME/Unity.Runner.git')
     f.seek(0)
+    f.truncate()
     json.dump(package, f, indent=2)
     print("写入配置: 版本号 {0} -> {1}".format(current_version, new_version))
     f.close()
@@ -244,6 +245,7 @@ with open("package.json", "r+") as f:
     package = json.load(f)
     package["type"] = "module"
     f.seek(0)
+    f.truncate()
     json.dump(package, f, indent=2)
     f.close()
 
