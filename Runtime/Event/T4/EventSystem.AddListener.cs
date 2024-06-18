@@ -10,6 +10,14 @@ namespace AIO.UEngine
 {
     partial class EventSystem
     {
+
+        #region Event
+
+        public static void AddListener<TE>(TE key, Action action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
+        }
+
         public static void AddListener(int key, Action action)
         {
             RelayAction relay;
@@ -24,6 +32,15 @@ namespace AIO.UEngine
             AddListener(name.GetHashCode(), action);
         }
 
+        #endregion
+
+        #region Event<T1>
+
+        public static void AddListener<TE, T1>(TE key, Action<T1> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
+        }
+
         public static void AddListener<T1>(int key, Action<T1> action)
         {
             RelayAction<T1> relay;
@@ -35,9 +52,16 @@ namespace AIO.UEngine
         public static void AddListener<T1>(string name, Action<T1> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2>
+
+        public static void AddListener<TE, T1, T2>(TE key, Action<T1, T2> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2>(int key, Action<T1, T2> action)
@@ -51,10 +75,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2>(string name, Action<T1, T2> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3>
+
+        public static void AddListener<TE, T1, T2, T3>(TE key, Action<T1, T2, T3> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3>(int key, Action<T1, T2, T3> action)
@@ -68,11 +98,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3>(string name, Action<T1, T2, T3> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4>
+
+        public static void AddListener<TE, T1, T2, T3, T4>(TE key, Action<T1, T2, T3, T4> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action)
@@ -86,12 +121,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4>(string name, Action<T1, T2, T3, T4> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4, T5>
+
+        public static void AddListener<TE, T1, T2, T3, T4, T5>(TE key, Action<T1, T2, T3, T4, T5> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action)
@@ -105,13 +144,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4, T5>(string name, Action<T1, T2, T3, T4, T5> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4, T5, T6>
+
+        public static void AddListener<TE, T1, T2, T3, T4, T5, T6>(TE key, Action<T1, T2, T3, T4, T5, T6> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action)
@@ -125,14 +167,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4, T5, T6>(string name, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4, T5, T6, T7>
+
+        public static void AddListener<TE, T1, T2, T3, T4, T5, T6, T7>(TE key, Action<T1, T2, T3, T4, T5, T6, T7> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action)
@@ -146,15 +190,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(string name, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4, T5, T6, T7, T8>
+
+        public static void AddListener<TE, T1, T2, T3, T4, T5, T6, T7, T8>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
@@ -168,16 +213,16 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(string name, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3
-                    + typeof(T8).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
+        }
+
+        #endregion
+
+        #region Event<T1, T2, T3, T4, T5, T6, T7, T8, T9>
+
+        public static void AddListener<TE, T1, T2, T3, T4, T5, T6, T7, T8, T9>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
         }
 
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
@@ -191,18 +236,9 @@ namespace AIO.UEngine
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string name, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            var key = name.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3
-                    + typeof(T8).GetHashCode() * 3
-                    + typeof(T9).GetHashCode() * 3;
-            AddListener(key, action);
+            AddListener(name.GetHashCode(), action);
         }
 
+        #endregion
     }
 }

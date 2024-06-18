@@ -24,6 +24,14 @@ namespace AIO.UEngine
         var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
         var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
 #>
+
+        #region Event<#= i > 0 ? $"<{type}>" : "" #>
+
+        public static void AddListener<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action) where TE : Enum
+        {
+            AddListener(key.GetHashCode(), action);
+        }
+
         public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
             RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay;
@@ -35,31 +43,10 @@ namespace AIO.UEngine
         public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(string name, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-<#
-        if (i == 0)
-        {
-#>
             AddListener(name.GetHashCode(), action);
-<#
-        }
-        else
-        {
-#>
-            var key = name.GetHashCode()
-<#
-            for (var j = 1; j <= i; j++)
-            {
-#>
-                    + typeof(T<#= j #>).GetHashCode()<#= j <= i ? " * 3" : "" #><#= j == i ? ";" : "" #>
-<#
-            }
-#>
-            AddListener(key, action);
-<#
-        }
-#>
         }
 
+        #endregion
 <#
     }
 #>
