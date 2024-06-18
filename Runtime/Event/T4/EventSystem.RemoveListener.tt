@@ -27,23 +27,21 @@ namespace AIO.UEngine
 
         #region Event<#= i > 0 ? $"<{type}>" : "" #>
 
-        public static void AddListener<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action) where TE : Enum
+        public static void RemoveListener<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action) where TE : Enum
         {
-            AddListener(key.GetHashCode(), action);
+            RemoveListener(key.GetHashCode(), action);
         }
 
-        public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        public static void RemoveListener<#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
-            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay;
-            if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
-            else RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
-            relay?.AddListener(action);
+            if (!RelayParams.TryGetValue(key, out var value)) return;
+            if (value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay) relay.RemoveListener(action);
         }
 
-        public static void AddListener<#= i > 0 ? $"<{type}>" : "" #>(string name, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        public static void RemoveListener<#= i > 0 ? $"<{type}>" : "" #>(string name, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
             if (string.IsNullOrEmpty(name)) return;
-            AddListener(name.GetHashCode(), action);
+            RemoveListener(name.GetHashCode(), action);
         }
 
         #endregion

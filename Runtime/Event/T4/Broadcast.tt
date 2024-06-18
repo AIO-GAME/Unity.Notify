@@ -17,6 +17,8 @@ namespace AIO.UEngine
 {
     partial class EventSystem
     {
+        #region Broadcast int
+
 <#
     for (var i = 0; i <= numbers; ++i)
     {
@@ -39,7 +41,9 @@ namespace AIO.UEngine
 <#
     }
 #>
-        #region Broadcast
+        #endregion
+
+        #region Broadcast string
 
 <#
     for (var i = 0; i <= numbers; ++i)
@@ -80,5 +84,32 @@ namespace AIO.UEngine
     }
 #>
         #endregion
+
+        #region Broadcast Enum
+
+<#
+    for (var i = 0; i <= numbers; ++i)
+    {
+        var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
+        var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
+        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+#>
+        #region Broadcast<#= i > 0 ? $"<{type}>" : "" #>
+
+        public static void Broadcast<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false) where TE : Enum
+        {
+            if (!RelayParams.TryGetValue(key.GetHashCode(), out var value)) return;
+            if (!(value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)) return;
+            if (immediately) relay.Dispatch(<#= ins #>);
+            else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+        }
+
+        #endregion
+
+<#
+    }
+#>
+        #endregion
+
     }
 }
