@@ -1,11 +1,6 @@
 ﻿namespace AIO.UEngine
 {
-    /// <summary>
-    /// 侦听器链接基类。
-    /// </summary>
-    /// <typeparam name="TDelegate"> 侦听器委托类型。 </typeparam>
-    public interface IRelayLinkBase<in TDelegate>
-    where TDelegate : class
+    public interface IRelayLinkBase
     {
         /// <summary>
         /// 这个实例当前有多少个持久侦听器
@@ -17,6 +12,30 @@
         /// </summary>
         uint OneTimeListenersCount { get; }
 
+        /// <summary>
+        /// 移除所有侦听器。
+        /// </summary>
+        /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
+        /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
+        /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        void RemoveAll(bool persistent = true, bool oneTime = true);
+
+        /// <summary>
+        /// 移除所有侦听器。
+        /// </summary>
+        /// <param name="caller">调用者</param>
+        /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
+        /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
+        void RemoveAll(object caller, bool persistent = true, bool oneTime = true);
+    }
+
+    /// <summary>
+    /// 侦听器链接基类。
+    /// </summary>
+    /// <typeparam name="TDelegate"> 侦听器委托类型。 </typeparam>
+    public interface IRelayLinkBase<in TDelegate> : IRelayLinkBase
+    where TDelegate : class
+    {
         /// <summary>
         /// 判断是否已经是一个持久侦听器，不查询一次性侦听器。
         /// </summary>
@@ -31,7 +50,7 @@
         /// <param name="caller">调用者</param>
         /// <returns>如果是持久侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
         bool Contains(TDelegate listener, object caller);
-        
+
         /// <summary>
         /// 添加一个持久侦听器。
         /// </summary>
@@ -120,21 +139,5 @@
         /// <param name="caller">调用者</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
         bool RemoveOnce(TDelegate listener, object caller);
-
-        /// <summary>
-        /// 移除所有侦听器。
-        /// </summary>
-        /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
-        /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
-        /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
-        void RemoveAll(bool persistent = true, bool oneTime = true);
-
-        /// <summary>
-        /// 移除所有侦听器。
-        /// </summary>
-        /// <param name="caller">调用者</param>
-        /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
-        /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
-        void RemoveAll(object caller, bool persistent = true, bool oneTime = true);
     }
 }

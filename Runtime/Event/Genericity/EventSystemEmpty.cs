@@ -44,6 +44,23 @@ namespace AIO.UEngine
             RemoveListener(name.GetHashCode(), action);
         }
 
+        public static void RemoveAllListener(int key, bool persistent = true, bool oneTime = true)
+        {
+            if (!RelayParams.TryGetValue(key, out var value)) return;
+            if (value is IRelayLinkBase relayAction) relayAction.RemoveAll(persistent, oneTime);
+        }
+
+        public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true) where TE : Enum
+        {
+            RemoveAllListener(key.GetHashCode(), persistent, oneTime);
+        }
+
+        public static void RemoveAllListener(string name, bool persistent = true, bool oneTime = true)
+        {
+            if (string.IsNullOrEmpty(name)) return;
+            RemoveAllListener(name.GetHashCode(), persistent, oneTime);
+        }
+
         #endregion
 
         #endregion
