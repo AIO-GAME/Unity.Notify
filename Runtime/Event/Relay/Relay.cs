@@ -50,10 +50,10 @@ namespace AIO.UEngine
             ($"{typeof(RelayBase<TDelegate>).FullName} Fewer listeners than expected. See guidelines in Relay.cs on using RemoveListener and RemoveAll within Relay listeners.");
 
         /// <inheritdoc />
-        public uint ListenerCount => _Count;
+        public uint ListenerCount => Count;
 
         /// <inheritdoc />
-        public uint OneTimeListenersCount => _OnceCount;
+        public uint OneTimeListenersCount => OnceCount;
 
         /// <summary>
         /// 是否有链接。
@@ -63,26 +63,75 @@ namespace AIO.UEngine
         /// <summary>
         /// 持久监听器数组。
         /// </summary>
-        protected TDelegate[] _Listeners = new TDelegate[1];
+        protected TDelegate[] Listeners;
 
-        protected uint _Count;
-        protected uint _Cap = 1;
+        /// <summary>
+        /// 持久监听器数量。
+        /// </summary>
+        protected uint Count;
+
+        /// <summary>
+        /// 持久监听器容量。
+        /// </summary>
+        protected uint Cap = 1;
 
         /// <summary>
         /// 一次性监听器数组。
         /// </summary>
-        protected TDelegate[] _ListenersOnce;
+        protected TDelegate[] ListenersOnce;
 
-        protected uint _OnceCount;
-        protected uint _OnceCap;
+        /// <summary>
+        /// 一次性监听器数量。
+        /// </summary>
+        protected uint OnceCount;
+
+        /// <summary>
+        ///  一次性监听器容量。
+        /// </summary>
+        protected uint OnceCap;
+
+        private Dictionary<object, IList<TDelegate>> ListenersByCaller;
+
+        public RelayBase()
+        {
+            ListenersByCaller = new Dictionary<object, IList<TDelegate>>();
+            ListenersOnce     = Array.Empty<TDelegate>();
+            Listeners         = new TDelegate[1];
+        }
 
         #region Error
 
         /// <inheritdoc />
-        public bool Contains(TDelegate listener, object caller) { return false; }
+        public bool Contains(TDelegate listener, object caller)
+        {
+            if (caller != null) return ListenersByCaller.TryGetValue(caller, out var list) && list.Contains(listener);
+#if UNITY_EDITOR
+            Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.AddListener: Caller cannot be null.");
+#endif
+            return false;
+        }
 
         /// <inheritdoc />
-        public bool AddListener(TDelegate listener, object caller, bool allowDuplicates = false) { return false; }
+        public bool AddListener(TDelegate listener, object caller, bool allowDuplicates = false)
+        {
+            if (caller == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.AddListener: Caller cannot be null.");
+#endif
+                return false;
+            }
+
+            if (!AddListener(listener, allowDuplicates)) return false;
+            if (!ListenersByCaller.TryGetValue(caller, out var list))
+            {
+                list                      = new List<TDelegate>();
+                ListenersByCaller[caller] = list;
+            }
+
+            list.Add(listener);
+            return true;
+        }
 
         /// <inheritdoc />
         public IRelayBinding BindListener(TDelegate listener, object caller, bool allowDuplicates = false) => AddListener(listener, caller, allowDuplicates)
@@ -90,35 +139,109 @@ namespace AIO.UEngine
             : null;
 
         /// <inheritdoc />
-        public bool AddOnce(TDelegate listener, object caller, bool allowDuplicates = false) { throw new NotImplementedException(); }
+        public bool AddOnce(TDelegate listener, object caller, bool allowDuplicates = false)
+        {
+            if (caller == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.AddOnce: Caller cannot be null.");
+#endif
+                return false;
+            }
+
+            if (!AddOnce(listener, allowDuplicates)) return false;
+            if (!ListenersByCaller.TryGetValue(caller, out var list))
+            {
+                list                      = new List<TDelegate>();
+                ListenersByCaller[caller] = list;
+            }
+
+            list.Add(listener);
+            return true;
+        }
 
         /// <inheritdoc />
-        public bool RemoveListener(TDelegate listener, object caller) { throw new NotImplementedException(); }
+        public bool RemoveListener(TDelegate listener, object caller)
+        {
+            if (caller == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.RemoveListener: Caller cannot be null.");
+#endif
+                return false;
+            }
+
+            if (!ListenersByCaller.TryGetValue(caller, out var list)) return false;
+            if (!list.Remove(listener)) return false;
+            if (list.Count == 0) ListenersByCaller.Remove(caller);
+            return RemoveListener(listener);
+        }
 
         /// <inheritdoc />
-        public bool RemoveOnce(TDelegate listener, object caller) { throw new NotImplementedException(); }
+        public bool RemoveOnce(TDelegate listener, object caller)
+        {
+            if (caller == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.RemoveOnce: Caller cannot be null.");
+#endif
+                return false;
+            }
+
+            if (!ListenersByCaller.TryGetValue(caller, out var list)) return false;
+            if (!list.Remove(listener)) return false;
+            if (list.Count == 0) ListenersByCaller.Remove(caller);
+            return RemoveOnce(listener);
+        }
 
         /// <inheritdoc />
-        public void RemoveAll(object caller, bool persistent = true, bool oneTime = true) { throw new NotImplementedException(); }
+        public void RemoveAll(object caller, bool persistent = true, bool oneTime = true)
+        {
+            if (caller == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError($"RelayBase<{typeof(TDelegate).FullName}>.RemoveAll: Caller cannot be null.");
+#endif
+                return;
+            }
+
+            if (!ListenersByCaller.TryGetValue(caller, out var list)) return;
+
+            if (persistent)
+            {
+                foreach (var item in list) RemoveListener(item);
+            }
+
+            if (oneTime && OnceCount > 0)
+            {
+                foreach (var item in list) RemoveOnce(item);
+            }
+
+            if (persistent && oneTime && OnceCount > 0)
+            {
+                list.Clear();
+                ListenersByCaller.Remove(caller);
+            }
+        }
 
         #endregion
 
         #region API
 
         /// <inheritdoc />
-        public bool Contains(TDelegate listener) => Contains(_Listeners, _Count, listener);
+        public bool Contains(TDelegate listener) => Contains(Listeners, Count, listener);
 
         /// <inheritdoc />
         public bool AddListener(TDelegate listener, bool allowDuplicates = false)
         {
-            if (!allowDuplicates && Contains(_Listeners, _Count, listener)) return false;
-            if (_Count == _Cap)
+            if (!allowDuplicates && Contains(Listeners, Count, listener)) return false;
+            if (Count == Cap)
             {
-                _Cap       *= 2;
-                _Listeners =  Expand(_Listeners, _Cap, _Count);
+                Cap       *= 2;
+                Listeners =  Expand(Listeners, Cap, Count);
             }
 
-            _Listeners[_Count++] = listener;
+            Listeners[Count++] = listener;
             return true;
         }
 
@@ -130,31 +253,29 @@ namespace AIO.UEngine
         /// <inheritdoc />
         public bool AddOnce(TDelegate listener, bool allowDuplicates = false)
         {
-            if (!allowDuplicates && Contains(_ListenersOnce, _OnceCount, listener)) return false;
-            if (_OnceCount == _OnceCap)
+            if (!allowDuplicates && Contains(ListenersOnce, OnceCount, listener)) return false;
+            if (OnceCount == OnceCap)
             {
-                if (_OnceCap == 0) _OnceCap =  1;
-                else _OnceCap               *= 2;
-                _ListenersOnce = Expand(_ListenersOnce, _OnceCap, _OnceCount);
+                if (OnceCap == 0) OnceCap =  1;
+                else OnceCap              *= 2;
+                ListenersOnce = Expand(ListenersOnce, OnceCap, OnceCount);
             }
 
-            _ListenersOnce[_OnceCount] = listener;
-            ++_OnceCount;
+            ListenersOnce[OnceCount] = listener;
+            ++OnceCount;
             return true;
         }
 
         /// <inheritdoc />
         public bool RemoveListener(TDelegate listener)
         {
-            bool result = false;
-            for (uint i = 0; i < _Count; ++i)
+            var result = false;
+            for (uint i = 0; i < Count; ++i)
             {
-                if (_Listeners[i].Equals(listener))
-                {
-                    RemoveAt(i);
-                    result = true;
-                    break;
-                }
+                if (!Listeners[i].Equals(listener)) continue;
+                RemoveAt(i);
+                result = true;
+                break;
             }
 
             return result;
@@ -164,14 +285,12 @@ namespace AIO.UEngine
         public bool RemoveOnce(TDelegate listener)
         {
             var result = false;
-            for (uint i = 0; i < _OnceCount; ++i)
+            for (uint i = 0; i < OnceCount; ++i)
             {
-                if (_ListenersOnce[i].Equals(listener))
-                {
-                    RemoveOnceAt(i);
-                    result = true;
-                    break;
-                }
+                if (!ListenersOnce[i].Equals(listener)) continue;
+                RemoveOnceAt(i);
+                result = true;
+                break;
             }
 
             return result;
@@ -183,31 +302,27 @@ namespace AIO.UEngine
             if (persistent)
             { // 没有计数检查，因为数组始终存在，RemoveAll 预期用户知道有侦听器
 
-                Array.Clear(_Listeners, 0, (int)_Cap);
-                _Count = 0;
+                Array.Clear(Listeners, 0, (int)Cap);
+                Count = 0;
             }
 
-            if (!oneTime || _OnceCount <= 0) return; // 计数检查，因为数组延迟实例化
-            Array.Clear(_ListenersOnce, 0, (int)_OnceCap);
-            _OnceCount = 0;
+            if (!oneTime || OnceCount <= 0) return; // 计数检查，因为数组延迟实例化
+            Array.Clear(ListenersOnce, 0, (int)OnceCap);
+            OnceCount = 0;
         }
 
         #endregion
 
         #region Internal
 
-        protected void RemoveAt(uint i) => _Count = RemoveAt(_Listeners, _Count, i);
+        protected void RemoveAt(uint i) => Count = RemoveAt(Listeners, Count, i);
 
-        protected void RemoveOnceAt(uint i) => _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i);
+        protected void RemoveOnceAt(uint i) => OnceCount = RemoveAt(ListenersOnce, OnceCount, i);
 
         protected static uint RemoveAt(TDelegate[] arr, uint count, uint i)
         {
             --count;
-            for (var j = i; j < count; ++j)
-            {
-                arr[j] = arr[j + 1];
-            }
-
+            for (var j = i; j < count; ++j) arr[j] = arr[j + 1];
             arr[count] = null;
             return count;
         }
@@ -226,14 +341,18 @@ namespace AIO.UEngine
             return false;
         }
 
+        /// <summary>
+        ///  扩容数组。
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <param name="cap">容量</param>
+        /// <param name="count">大小</param>
+        /// <returns>扩容后的数组</returns>
         private static TDelegate[] Expand(IReadOnlyList<TDelegate> arr, uint cap, uint count)
         {
             var newArr = new TDelegate[cap];
             for (var i = 0; i < count; ++i)
-            {
                 newArr[i] = arr[i];
-            }
-
             return newArr;
         }
 

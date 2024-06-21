@@ -10,13 +10,14 @@
 |||✩ - - - - - - - - - - |*/
 
 using System;
+using AIO.UEngine;
 
-namespace AIO.UEngine
+namespace AIO
 {
     partial class EventSystem
     {
 <#
-    var numbers = 9;
+    const int numbers = 9;
 
     for (var i = 0; i <= numbers; ++i)
     {
@@ -26,24 +27,49 @@ namespace AIO.UEngine
 #>
 
         #region Event<#= i > 0 ? $"<{type}>" : "" #>
-
-        public static void RemoveListener<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action) where TE : Enum
+<#
+        foreach (var name in new string[]
         {
-            RemoveListener(key.GetHashCode(), action);
+            "RemoveListener",
+            "RemoveOnce"
+        })
+        {
+#>
+
+        /// <summary>
+        /// 移除指定事件键值的 <#= name == "AddListener" ? "事件侦听器" : "一次性事件侦听器" #>
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        public static void <#= name #><#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action) where TE : Enum
+        {
+            <#= name #>(key.GetHashCode(), action);
         }
 
-        public static void RemoveListener<#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        /// <summary>
+        /// 移除指定事件键值的 <#= name == "AddListener" ? "事件侦听器" : "一次性事件侦听器" #>
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay) relay.RemoveListener(action);
+            if (value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay) relay.<#= name #>(action);
         }
 
-        public static void RemoveListener<#= i > 0 ? $"<{type}>" : "" #>(string name, Action<#= i > 0 ? $"<{type}>" : "" #> action)
+        /// <summary>
+        /// 移除指定事件键值的 <#= name == "AddListener" ? "事件侦听器" : "一次性事件侦听器" #>
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(string key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
-            if (string.IsNullOrEmpty(name)) return;
-            RemoveListener(name.GetHashCode(), action);
+            if (string.IsNullOrEmpty(key)) return;
+            <#= name #>(key.GetHashCode(), action);
         }
-
+<#
+    }
+#>
         #endregion
 <#
     }

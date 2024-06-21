@@ -14,6 +14,8 @@ namespace AIO.UEngine
 
         public RegisterEventAttribute(int key) { Key = key; }
 
+        public RegisterEventAttribute(byte key) { Key = key; }
+
         public RegisterEventAttribute(Type type) { Key = type.GetHashCode(); }
 
         public RegisterEventAttribute(Enum value) { Key = value.GetHashCode(); }

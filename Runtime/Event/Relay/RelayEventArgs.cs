@@ -26,17 +26,17 @@ namespace AIO.UEngine
 
         public void Dispatch()
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1]?.Invoke();
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1]?.Invoke();
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke();
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke();
             }
         }
     }

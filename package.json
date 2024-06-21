@@ -2,7 +2,7 @@
   "name": "com.aio.notify",
   "displayName": "AIO Unity Notify",
   "description": "a lightweight event notification system that supports event subscription, broadcasting, and unsubscription.",
-  "version": "1.0.1-preview",
+  "version": "1.0.3-preview",
   "unity": "2019.4",
   "category": "Runtime",
   "unityRelease": "0f1",
@@ -15,7 +15,7 @@
     "url": "https://github.com/AIO-GAME/Unity.Notify.git"
   },
   "relatedPackages": {
-    "com.aio.runner": "1.0.0-preview"
+    "com.aio.runner": "1.0.1-preview"
   },
   "keywords": [
     "notify",
