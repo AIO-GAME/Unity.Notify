@@ -34,9 +34,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener(int key, Action action, bool allowDuplicates = false)
         {
-            RelayAction relay;
+            RelayAction relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction;
-            else RelayParams[key] = relay = new RelayAction();
+            if (relay == null) RelayParams[key] = relay = new RelayAction();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -73,9 +73,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener(object caller, int key, Action action, bool allowDuplicates = false)
         {
-            RelayAction relay;
+            RelayAction relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction;
-            else RelayParams[key] = relay = new RelayAction();
+            if (relay == null) RelayParams[key] = relay = new RelayAction();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -118,9 +118,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce(int key, Action action, bool allowDuplicates = false)
         {
-            RelayAction relay;
+            RelayAction relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction;
-            else RelayParams[key] = relay = new RelayAction();
+            if (relay == null) RelayParams[key] = relay = new RelayAction();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -157,9 +157,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce(object caller, int key, Action action, bool allowDuplicates = false)
         {
-            RelayAction relay;
+            RelayAction relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction;
-            else RelayParams[key] = relay = new RelayAction();
+            if (relay == null) RelayParams[key] = relay = new RelayAction();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -205,9 +205,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1>(int key, Action<T1> action, bool allowDuplicates = false)
         {
-            RelayAction<T1> relay;
+            RelayAction<T1> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1>;
-            else RelayParams[key] = relay = new RelayAction<T1>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -244,9 +244,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1>(object caller, int key, Action<T1> action, bool allowDuplicates = false)
         {
-            RelayAction<T1> relay;
+            RelayAction<T1> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1>;
-            else RelayParams[key] = relay = new RelayAction<T1>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -289,9 +289,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1>(int key, Action<T1> action, bool allowDuplicates = false)
         {
-            RelayAction<T1> relay;
+            RelayAction<T1> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1>;
-            else RelayParams[key] = relay = new RelayAction<T1>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -328,9 +328,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1>(object caller, int key, Action<T1> action, bool allowDuplicates = false)
         {
-            RelayAction<T1> relay;
+            RelayAction<T1> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1>;
-            else RelayParams[key] = relay = new RelayAction<T1>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -376,9 +376,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2>(int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2> relay;
+            RelayAction<T1, T2> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -415,9 +415,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2>(object caller, int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2> relay;
+            RelayAction<T1, T2> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -460,9 +460,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2>(int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2> relay;
+            RelayAction<T1, T2> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -499,9 +499,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2>(object caller, int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2> relay;
+            RelayAction<T1, T2> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -547,9 +547,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3>(int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3> relay;
+            RelayAction<T1, T2, T3> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -586,9 +586,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3>(object caller, int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3> relay;
+            RelayAction<T1, T2, T3> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -631,9 +631,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3>(int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3> relay;
+            RelayAction<T1, T2, T3> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -670,9 +670,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3>(object caller, int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3> relay;
+            RelayAction<T1, T2, T3> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -718,9 +718,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4> relay;
+            RelayAction<T1, T2, T3, T4> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -757,9 +757,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4>(object caller, int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4> relay;
+            RelayAction<T1, T2, T3, T4> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -802,9 +802,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4> relay;
+            RelayAction<T1, T2, T3, T4> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -841,9 +841,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4>(object caller, int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4> relay;
+            RelayAction<T1, T2, T3, T4> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -889,9 +889,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5> relay;
+            RelayAction<T1, T2, T3, T4, T5> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -928,9 +928,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5>(object caller, int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5> relay;
+            RelayAction<T1, T2, T3, T4, T5> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -973,9 +973,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5> relay;
+            RelayAction<T1, T2, T3, T4, T5> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -1012,9 +1012,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5>(object caller, int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5> relay;
+            RelayAction<T1, T2, T3, T4, T5> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1060,9 +1060,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -1099,9 +1099,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6>(object caller, int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1144,9 +1144,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -1183,9 +1183,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(object caller, int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1231,9 +1231,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -1270,9 +1270,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1315,9 +1315,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -1354,9 +1354,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1402,9 +1402,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -1441,9 +1441,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1486,9 +1486,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -1525,9 +1525,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1573,9 +1573,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -1612,9 +1612,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
             if (relay.AddListener(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
@@ -1657,9 +1657,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -1696,9 +1696,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
-            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay;
+            RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>;
-            else RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>();
             if (relay.AddOnce(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
