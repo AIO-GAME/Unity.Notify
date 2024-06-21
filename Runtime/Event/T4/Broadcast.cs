@@ -145,109 +145,55 @@ namespace AIO
         public static void Broadcast<T1>(string key, T1 t1, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3;
-            Broadcast(value, t1, immediately);
+            Broadcast(key.GetHashCode(), t1, immediately);
         }
 
         public static void Broadcast<T1, T2>(string key, T1 t1, T2 t2, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3;
-            Broadcast(value, t1, t2, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, immediately);
         }
 
         public static void Broadcast<T1, T2, T3>(string key, T1 t1, T2 t2, T3 t3, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4>(string key, T1 t1, T2 t2, T3 t3, T4 t4, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4, T5>(string key, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, t5, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, t5, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4, T5, T6>(string key, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, t5, t6, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, t5, t6, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4, T5, T6, T7>(string key, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, t5, t6, t7, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, t5, t6, t7, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4, T5, T6, T7, T8>(string key, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3
-                    + typeof(T8).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, t5, t6, t7, t8, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, t5, t6, t7, t8, immediately);
         }
 
         public static void Broadcast<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string key, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-            var value = key.GetHashCode()
-                    + typeof(T1).GetHashCode() * 3
-                    + typeof(T2).GetHashCode() * 3
-                    + typeof(T3).GetHashCode() * 3
-                    + typeof(T4).GetHashCode() * 3
-                    + typeof(T5).GetHashCode() * 3
-                    + typeof(T6).GetHashCode() * 3
-                    + typeof(T7).GetHashCode() * 3
-                    + typeof(T8).GetHashCode() * 3
-                    + typeof(T9).GetHashCode() * 3;
-            Broadcast(value, t1, t2, t3, t4, t5, t6, t7, t8, t9, immediately);
+            Broadcast(key.GetHashCode(), t1, t2, t3, t4, t5, t6, t7, t8, t9, immediately);
         }
 
         #endregion
