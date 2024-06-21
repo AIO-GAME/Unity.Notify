@@ -5,8 +5,9 @@
 |||✩ - - - - - - - - - - |*/
 
 using System;
+using AIO.UEngine;
 
-namespace AIO.UEngine
+namespace AIO
 {
     #region T1
     
@@ -47,20 +48,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1);
             }
         }
     }
@@ -106,20 +107,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2);
             }
         }
     }
@@ -165,20 +166,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3);
             }
         }
     }
@@ -224,20 +225,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4);
             }
         }
     }
@@ -283,20 +284,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4, t5);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4, t5);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5);
             }
         }
     }
@@ -342,20 +343,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4, t5, t6);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4, t5, t6);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6);
             }
         }
     }
@@ -401,20 +402,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7);
             }
         }
     }
@@ -460,20 +461,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7, t8);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7, t8);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7, t8);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7, t8);
             }
         }
     }
@@ -519,20 +520,20 @@ namespace AIO.UEngine
 
         public void Dispatch(T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9)
         {
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7, t8, t9);
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1](t1, t2, t3, t4, t5, t6, t7, t8, t9);
                 else RemoveAt(i - 1);
             }
 
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]); // Remove first to prevent potential infinite loops
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7, t8, t9);
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke(t1, t2, t3, t4, t5, t6, t7, t8, t9);
             }
         }
     }
@@ -578,23 +579,23 @@ namespace AIO.UEngine
             // Persistent listeners
             // Reversal allows self-removal during dispatch (doesn't skip next listener)
             // Reversal allows safe addition during dispatch (doesn't fire immediately)
-            for (var i = _Count; i > 0; --i)
+            for (var i = Count; i > 0; --i)
             {
-                if (i > _Count) throw IndexOutError;
-                if (_Listeners[i - 1] != null) _Listeners[i - 1]();
+                if (i > Count) throw IndexOutError;
+                if (Listeners[i - 1] != null) Listeners[i - 1]();
                 else
                     RemoveAt(i - 1);
             }
 
             // One-time listeners - reversed for safe addition and auto-removal
-            for (var i = _OnceCount; i > 0; --i)
+            for (var i = OnceCount; i > 0; --i)
             {
                 // Remove first to prevent potential infinite loops
 #if SIGTRAP_RELAY_DBG
 				_RelayDebugger.DebugRemListener(this, _listenersOnce[i - 1]);
 #endif
-                _OnceCount = RemoveAt(_ListenersOnce, _OnceCount, i - 1);
-                _ListenersOnce[i - 1]?.Invoke();
+                OnceCount = RemoveAt(ListenersOnce, OnceCount, i - 1);
+                ListenersOnce[i - 1]?.Invoke();
             }
         }
     }

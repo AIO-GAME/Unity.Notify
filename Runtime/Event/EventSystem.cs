@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AIO.UEngine;
 
-namespace AIO.UEngine
+namespace AIO
 {
     public static partial class EventSystem
     {
-        private static readonly Dictionary<int, object> RelayParams = new Dictionary<int, object>();
+        private static readonly Dictionary<int, object>              RelayParams       = new Dictionary<int, object>(8);
+        private static readonly Dictionary<object, ICollection<int>> ListenersByCaller = new Dictionary<object, ICollection<int>>(8);
 
         public static void Initialize()
         {

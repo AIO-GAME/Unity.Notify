@@ -3,9 +3,10 @@
 /*|✩ - - - - - - - - - - |||
 |||✩ Automatic Generate  |||
 |||✩ - - - - - - - - - - |*/
+
 using System;
 
-namespace AIO.UEngine
+namespace AIO
 {
     partial class EventSystem
     {

@@ -51,13 +51,13 @@ namespace AIO.UEngine
             if (enable)
             {
                 if (Enabled) return false;
-                if (!_Relay.AddListener(_Listener, AllowDuplicates)) return false;
+                if (!_Relay.AddListener(_Listener, Caller, AllowDuplicates)) return false;
                 Enabled = true;
                 return true;
             }
 
             if (!Enabled) return false;
-            if (!_Relay.RemoveListener(_Listener)) return false;
+            if (!_Relay.RemoveListener(_Listener, Caller)) return false;
             Enabled = false;
             return true;
         }

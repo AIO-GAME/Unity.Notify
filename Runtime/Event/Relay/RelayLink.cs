@@ -5,13 +5,13 @@ namespace AIO.UEngine
     public abstract class RelayLinkBase<TDelegate> : IRelayLinkBase<TDelegate>
     where TDelegate : class
     {
-        protected RelayBase<TDelegate> _Relay;
+        protected RelayBase<TDelegate> Relay { get; }
 
         #region Constructors
 
         private RelayLinkBase() { } // Private empty constructor to force use of params
 
-        public RelayLinkBase(RelayBase<TDelegate> relay) { _Relay = relay; }
+        public RelayLinkBase(RelayBase<TDelegate> relay) { Relay = relay; }
 
         #endregion
 
@@ -20,10 +20,10 @@ namespace AIO.UEngine
         #region Error
 
         /// <inheritdoc />
-        public bool Contains(TDelegate listener, object caller) { return false; }
+        public bool Contains(TDelegate listener, object caller) => Relay.Contains(listener, caller);
 
         /// <inheritdoc />
-        public bool AddListener(TDelegate listener, object caller, bool allowDuplicates = false) { return false; }
+        public bool AddListener(TDelegate listener, object caller, bool allowDuplicates = false) => Relay.AddListener(listener, caller, allowDuplicates);
 
         /// <inheritdoc />
         public IRelayBinding BindListener(TDelegate listener, object caller, bool allowDuplicates = false) => AddListener(listener, caller, allowDuplicates)
@@ -31,45 +31,45 @@ namespace AIO.UEngine
             : null;
 
         /// <inheritdoc />
-        public bool AddOnce(TDelegate listener, object caller, bool allowDuplicates = false) { throw new NotImplementedException(); }
+        public bool AddOnce(TDelegate listener, object caller, bool allowDuplicates = false) => Relay.AddOnce(listener, caller, allowDuplicates);
 
         /// <inheritdoc />
-        public bool RemoveListener(TDelegate listener, object caller) { throw new NotImplementedException(); }
+        public bool RemoveListener(TDelegate listener, object caller) => Relay.RemoveListener(listener, caller);
 
         /// <inheritdoc />
-        public bool RemoveOnce(TDelegate listener, object caller) { throw new NotImplementedException(); }
+        public bool RemoveOnce(TDelegate listener, object caller) => Relay.RemoveListener(listener, caller);
 
         /// <inheritdoc />
-        public void RemoveAll(object caller, bool persistent = true, bool oneTime = true) { throw new NotImplementedException(); }
+        public void RemoveAll(object caller, bool persistent = true, bool oneTime = true) => Relay.RemoveAll(caller, persistent, oneTime);
 
         #endregion
 
         /// <inheritdoc />
-        public uint ListenerCount => _Relay.ListenerCount;
+        public uint ListenerCount => Relay.ListenerCount;
 
         /// <inheritdoc />
-        public uint OneTimeListenersCount => _Relay.OneTimeListenersCount;
+        public uint OneTimeListenersCount => Relay.OneTimeListenersCount;
 
         /// <inheritdoc />
-        public bool Contains(TDelegate listener) => _Relay.Contains(listener);
+        public bool Contains(TDelegate listener) => Relay.Contains(listener);
 
         /// <inheritdoc />
-        public bool AddListener(TDelegate listener, bool allowDuplicates = false) => _Relay.AddListener(listener, allowDuplicates);
+        public bool AddListener(TDelegate listener, bool allowDuplicates = false) => Relay.AddListener(listener, allowDuplicates);
 
         /// <inheritdoc />
-        public IRelayBinding BindListener(TDelegate listener, bool allowDuplicates = false) => _Relay.BindListener(listener, allowDuplicates);
+        public IRelayBinding BindListener(TDelegate listener, bool allowDuplicates = false) => Relay.BindListener(listener, allowDuplicates);
 
         /// <inheritdoc />
-        public bool AddOnce(TDelegate listener, bool allowDuplicates = false) => _Relay.AddOnce(listener, allowDuplicates);
+        public bool AddOnce(TDelegate listener, bool allowDuplicates = false) => Relay.AddOnce(listener, allowDuplicates);
 
         /// <inheritdoc />
-        public bool RemoveListener(TDelegate listener) => _Relay.RemoveListener(listener);
+        public bool RemoveListener(TDelegate listener) => Relay.RemoveListener(listener);
 
         /// <inheritdoc />
-        public bool RemoveOnce(TDelegate listener) => _Relay.RemoveOnce(listener);
+        public bool RemoveOnce(TDelegate listener) => Relay.RemoveOnce(listener);
 
         /// <inheritdoc />
-        public void RemoveAll(bool persistent = true, bool oneTime = true) => _Relay.RemoveAll(persistent, oneTime);
+        public void RemoveAll(bool persistent = true, bool oneTime = true) => Relay.RemoveAll(persistent, oneTime);
 
         #endregion
     }

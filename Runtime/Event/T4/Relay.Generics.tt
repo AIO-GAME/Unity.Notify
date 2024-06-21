@@ -10,8 +10,9 @@
 |||✩ - - - - - - - - - - |*/
 
 using System;
+using AIO.UEngine;
 
-namespace AIO.UEngine
+namespace AIO
 {
 <#
     var numbers = 9;
