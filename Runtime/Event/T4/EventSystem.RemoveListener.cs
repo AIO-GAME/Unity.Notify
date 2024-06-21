@@ -32,7 +32,10 @@ namespace AIO
         public static void RemoveListener(int key, Action action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction).FullName, out var relay))
+            {
+                (relay as RelayAction)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -64,7 +67,10 @@ namespace AIO
         public static void RemoveOnce(int key, Action action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction).FullName, out var relay))
+            {
+                (relay as RelayAction)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -99,7 +105,10 @@ namespace AIO
         public static void RemoveListener<T1>(int key, Action<T1> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -131,7 +140,10 @@ namespace AIO
         public static void RemoveOnce<T1>(int key, Action<T1> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -166,7 +178,10 @@ namespace AIO
         public static void RemoveListener<T1, T2>(int key, Action<T1, T2> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -198,7 +213,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2>(int key, Action<T1, T2> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -233,7 +251,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3>(int key, Action<T1, T2, T3> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -265,7 +286,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3>(int key, Action<T1, T2, T3> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -300,7 +324,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -332,7 +359,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -367,7 +397,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -399,7 +432,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -434,7 +470,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -466,7 +505,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -501,7 +543,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -533,7 +578,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -568,7 +616,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -600,7 +651,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -635,7 +689,10 @@ namespace AIO
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>)?.RemoveListener(action);
+            }
         }
 
         /// <summary>
@@ -667,7 +724,10 @@ namespace AIO
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(typeof(RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>).FullName, out var relay))
+            {
+                (relay as RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>

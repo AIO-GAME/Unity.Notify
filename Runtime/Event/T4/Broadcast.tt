@@ -29,10 +29,12 @@ namespace AIO
 
         public static void Broadcast<#= i > 0 ? $"<{type}>" : "" #>(int key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false)
         {
-            if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (!(value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)) return;
-            if (immediately) relay.Dispatch(<#= ins #>);
-            else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+            if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+            if (dictionary.TryGetValue(typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName, out var value) && value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)
+            {
+                if (immediately) relay.Dispatch(<#= ins #>);
+                else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+            }
         }
 
         #endregion
@@ -75,10 +77,12 @@ namespace AIO
 
         public static void Broadcast<#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false) where TE : Enum
         {
-            if (!RelayParams.TryGetValue(key.GetHashCode(), out var value)) return;
-            if (!(value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)) return;
-            if (immediately) relay.Dispatch(<#= ins #>);
-            else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+            if (!RelayParams.TryGetValue(key.GetHashCode(), out var dictionary)) return;
+            if (dictionary.TryGetValue(typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName, out var value) && value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay)
+            {
+                if (immediately) relay.Dispatch(<#= ins #>);
+                else Runner.StartCoroutine(relay.Dispatch<#= i > 0 ? ", " + ins : "" #>);
+            }
         }
 
         #endregion

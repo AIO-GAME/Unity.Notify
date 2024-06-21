@@ -8,8 +8,8 @@ namespace AIO
 {
     public static partial class EventSystem
     {
-        private static readonly Dictionary<int, object>              RelayParams       = new Dictionary<int, object>(8);
-        private static readonly Dictionary<object, ICollection<int>> ListenersByCaller = new Dictionary<object, ICollection<int>>(8);
+        private static readonly Dictionary<int, Dictionary<string, object>> RelayParams       = new Dictionary<int, Dictionary<string, object>>(8);
+        private static readonly Dictionary<object, ICollection<int>>        ListenersByCaller = new Dictionary<object, ICollection<int>>(8);
 
         public static void Initialize()
         {
