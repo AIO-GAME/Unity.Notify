@@ -49,34 +49,12 @@ namespace AIO
     {
         var type = string.Join(", ", Enumerable.Range(0, i).Select(n => $"T{n + 1}"));
         var param = string.Join(", ", Enumerable.Range(0, i).Select(n => string.Format("T{0} t{0}", n + 1)));
-        var ins = string.Join(", ", Enumerable.Range(0, i).Select(n => $"t{n + 1}"));
+        var ins = string.Join("", Enumerable.Range(0, i).Select(n => $"t{n + 1}, "));
 #>
         public static void Broadcast<#= i > 0 ? $"<{type}>" : "" #>(string key, <#= i > 0 ? $"{param}, " : "" #>bool immediately = false)
         {
             if (string.IsNullOrEmpty(key)) return;
-<#
-        if (i == 0)
-        {
-#>
-            Broadcast(key.GetHashCode(), immediately);
-<#
-        }
-        else
-        {
-#>
-            var value = key.GetHashCode()
-<#
-            for (var j = 1; j <= i; j++)
-            {
-#>
-                    + typeof(T<#= j #>).GetHashCode()<#= j <= i ? " * 3" : "" #><#= j == i ? ";" : "" #>
-<#
-            }
-#>
-            Broadcast(value, <#= ins #>, immediately);
-<#
-        }
-#>
+            Broadcast(key.GetHashCode(), <#= ins #>immediately);
         }
 
 <#

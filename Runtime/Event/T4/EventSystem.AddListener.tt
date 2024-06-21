@@ -56,9 +56,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
-            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay;
+            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
-            else RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
             relay.<#= name #>(action, allowDuplicates);
         }
 
@@ -95,9 +95,9 @@ namespace AIO
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
-            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay;
+            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
             if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
-            else RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
+            if (relay == null) RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
             if (relay.<#= name #>(action, caller, allowDuplicates))
             {
                 if (ListenersByCaller.TryGetValue(caller, out var list))
