@@ -201,9 +201,31 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
-        /// <param name="action"> 侦听器 </param>
-        public static void RemoveListener<TE>(TE key, Action<EventArgs> action)
-        where TE : Enum => RemoveListener(key.GetHashCode(), action);
+        public static void RemoveListener(int key)
+        {
+            if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+            foreach (var pair in dictionary)
+            {
+                if (pair.Value is IRelayLinkBase relay) relay.RemoveAll(true, false);
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveListener(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            RemoveListener(key.GetHashCode());
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveListener<TE>(TE key)
+        where TE : Enum => RemoveListener(key.GetHashCode());
 
         /// <summary>
         /// 移除指定事件键值的 持久侦听器。
@@ -216,6 +238,14 @@ namespace AIO
             if (value.TryGetValue(EventArgsFullName, out var relay))
                 (relay as RelayAction<EventArgs>)?.RemoveListener(action);
         }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        public static void RemoveListener<TE>(TE key, Action<EventArgs> action)
+        where TE : Enum => RemoveListener(key.GetHashCode(), action);
 
         /// <summary>
         /// 移除指定事件键值的 持久侦听器。
@@ -249,6 +279,36 @@ namespace AIO
         #endregion
 
         #region RemoveOnce
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce(int key)
+        {
+            if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+            foreach (var pair in dictionary)
+            {
+                if (pair.Value is IRelayLinkBase relay) relay.RemoveAll(false, true);
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            RemoveOnce(key.GetHashCode());
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce<TE>(TE key)
+        where TE : Enum => RemoveOnce(key.GetHashCode());
 
         /// <summary>
         /// 移除指定事件键值的 一次性侦听器。
@@ -326,7 +386,8 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="persistent"> 如果为 <c>true</c>, 移除持久侦听器。 </param>
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
-        public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true) where TE : Enum
+        public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true)
+        where TE : Enum
         {
             RemoveAllListener(key.GetHashCode(), persistent, oneTime);
         }
