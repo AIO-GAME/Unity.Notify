@@ -7,6 +7,8 @@ namespace AIO
 {
     public static partial class EventSystem
     {
+        private static readonly string EventArgsFullName = typeof(RelayAction<EventArgs>).FullName;
+
         #region AddOnce
 
         /// <summary>
@@ -18,9 +20,13 @@ namespace AIO
         public static void AddOnce(int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
-            if (RelayParams.TryGetValue(key, out var value))
-                relay = value as RelayAction<EventArgs>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<EventArgs>();
+            if (RelayParams.TryGetValue(key, out var value)) // 查找当前key的 事件列表
+                relay = value.TryGetValue(EventArgsFullName, out var obj) ? obj as RelayAction<EventArgs> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null)
+                RelayParams[key][EventArgsFullName] = relay = new RelayAction<EventArgs>();
             relay.AddOnce(action, allowDuplicates);
         }
 
@@ -56,9 +62,12 @@ namespace AIO
         public static void AddOnce(object caller, int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
-            if (RelayParams.TryGetValue(key, out var value))
-                relay = value as RelayAction<EventArgs>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<EventArgs>();
+            if (RelayParams.TryGetValue(key, out var value)) // 查找当前key的 事件列表
+                relay = value.TryGetValue(EventArgsFullName, out var obj) ? obj as RelayAction<EventArgs> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null) RelayParams[key][EventArgsFullName] = relay = new RelayAction<EventArgs>();
             if (!relay.AddOnce(action, caller, allowDuplicates)) return;
             if (ListenersByCaller.TryGetValue(caller, out var list))
             {
@@ -104,9 +113,13 @@ namespace AIO
         public static void AddListener(int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
-            if (RelayParams.TryGetValue(key, out var value))
-                relay = value as RelayAction<EventArgs>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<EventArgs>();
+            if (RelayParams.TryGetValue(key, out var value)) // 查找当前key的 事件列表
+                relay = value.TryGetValue(EventArgsFullName, out var obj) ? obj as RelayAction<EventArgs> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null)
+                RelayParams[key][EventArgsFullName] = relay = new RelayAction<EventArgs>();
             relay.AddListener(action, allowDuplicates);
         }
 
@@ -166,9 +179,12 @@ namespace AIO
         public static void AddListener(object caller, int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
-            if (RelayParams.TryGetValue(key, out var value))
-                relay = value as RelayAction<EventArgs>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<EventArgs>();
+            if (RelayParams.TryGetValue(key, out var value)) // 查找当前key的 事件列表
+                relay = value.TryGetValue(EventArgsFullName, out var obj) ? obj as RelayAction<EventArgs> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null) RelayParams[key][EventArgsFullName] = relay = new RelayAction<EventArgs>();
             if (!relay.AddListener(action, caller, allowDuplicates)) return;
             if (ListenersByCaller.TryGetValue(caller, out var list))
             {
@@ -185,8 +201,31 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
-        /// <param name="action"> 侦听器 </param>
-        public static void RemoveListener<TE>(TE key, Action<EventArgs> action) where TE : Enum { RemoveListener(key.GetHashCode(), action); }
+        public static void RemoveListener(int key)
+        {
+            if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+            foreach (var pair in dictionary)
+            {
+                if (pair.Value is IRelayLinkBase relay) relay.RemoveAll(true, false);
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveListener(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            RemoveListener(key.GetHashCode());
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveListener<TE>(TE key)
+        where TE : Enum => RemoveListener(key.GetHashCode());
 
         /// <summary>
         /// 移除指定事件键值的 持久侦听器。
@@ -196,8 +235,17 @@ namespace AIO
         public static void RemoveListener(int key, Action<EventArgs> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<EventArgs> relay) relay.RemoveListener(action);
+            if (value.TryGetValue(EventArgsFullName, out var relay))
+                (relay as RelayAction<EventArgs>)?.RemoveListener(action);
         }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        public static void RemoveListener<TE>(TE key, Action<EventArgs> action)
+        where TE : Enum => RemoveListener(key.GetHashCode(), action);
 
         /// <summary>
         /// 移除指定事件键值的 持久侦听器。
@@ -216,17 +264,51 @@ namespace AIO
         /// <param name="caller"> 调用者 </param>
         public static void RemoveListener(object caller)
         {
-            if (!ListenersByCaller.TryGetValue(caller, out var list)) return;
-            foreach (var key in list)
+            if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;
+            foreach (var key in collection)
             {
-                if (!RelayParams.TryGetValue(key, out var value)) return;
-                if (value is IRelayLinkBase relay) relay.RemoveAll(caller, true, false);
+                if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+                foreach (var pair in dictionary)
+                {
+                    if (pair.Value is IRelayLinkBase relay)
+                        relay.RemoveAll(caller, true, false);
+                }
             }
         }
 
         #endregion
 
         #region RemoveOnce
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce(int key)
+        {
+            if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+            foreach (var pair in dictionary)
+            {
+                if (pair.Value is IRelayLinkBase relay) relay.RemoveAll(false, true);
+            }
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            RemoveOnce(key.GetHashCode());
+        }
+
+        /// <summary>
+        /// 移除指定事件键值的 持久侦听器。
+        /// </summary>
+        /// <param name="key"> 事件键值 </param>
+        public static void RemoveOnce<TE>(TE key)
+        where TE : Enum => RemoveOnce(key.GetHashCode());
 
         /// <summary>
         /// 移除指定事件键值的 一次性侦听器。
@@ -244,7 +326,10 @@ namespace AIO
         public static void RemoveOnce(int key, Action<EventArgs> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<EventArgs> relay) relay.RemoveOnce(action);
+            if (value.TryGetValue(EventArgsFullName, out var relay))
+            {
+                (relay as RelayAction<EventArgs>)?.RemoveOnce(action);
+            }
         }
 
         /// <summary>
@@ -264,11 +349,15 @@ namespace AIO
         /// <param name="caller"> 调用者 </param>
         public static void RemoveOnce(object caller)
         {
-            if (!ListenersByCaller.TryGetValue(caller, out var list)) return;
-            foreach (var key in list)
+            if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;
+            foreach (var key in collection)
             {
-                if (!RelayParams.TryGetValue(key, out var value)) return;
-                if (value is IRelayLinkBase relay) relay.RemoveAll(caller, false, true);
+                if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+                foreach (var pair in dictionary)
+                {
+                    if (pair.Value is IRelayLinkBase relay)
+                        relay.RemoveAll(caller, false);
+                }
             }
         }
 
@@ -284,8 +373,11 @@ namespace AIO
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
         public static void RemoveAllListener(int key, bool persistent = true, bool oneTime = true)
         {
-            if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is IRelayLinkBase relay) relay.RemoveAll(persistent, oneTime);
+            if (!RelayParams.TryGetValue(key, out var collection)) return;
+            foreach (var pair in collection)
+            {
+                if (pair.Value is IRelayLinkBase relay) relay.RemoveAll(persistent, oneTime);
+            }
         }
 
         /// <summary>
@@ -294,7 +386,8 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="persistent"> 如果为 <c>true</c>, 移除持久侦听器。 </param>
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
-        public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true) where TE : Enum
+        public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true)
+        where TE : Enum
         {
             RemoveAllListener(key.GetHashCode(), persistent, oneTime);
         }
@@ -317,14 +410,18 @@ namespace AIO
         /// <param name="caller"> 调用者 </param>
         public static void RemoveAllListener(object caller)
         {
-            if (!ListenersByCaller.TryGetValue(caller, out var list)) return;
-            foreach (var key in list)
+            if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;
+            foreach (var key in collection)
             {
-                if (!RelayParams.TryGetValue(key, out var value)) return;
-                if (value is IRelayLinkBase relay) relay.RemoveAll(caller, true, true);
+                if (!RelayParams.TryGetValue(key, out var dictionary)) return;
+                foreach (var pair in dictionary)
+                {
+                    if (pair.Value is IRelayLinkBase relay)
+                        relay.RemoveAll(caller);
+                }
             }
 
-            list.Clear();
+            collection.Clear();
             ListenersByCaller.Remove(caller);
         }
 

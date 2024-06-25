@@ -54,7 +54,10 @@ namespace AIO
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
-            if (value is RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay) relay.<#= name #>(action);
+            if (value.TryGetValue(typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName, out var relay))
+            {
+                (relay as RelayAction<#= i > 0 ? $"<{type}>" : "" #>)?.<#= name #>(action);
+            }
         }
 
         /// <summary>

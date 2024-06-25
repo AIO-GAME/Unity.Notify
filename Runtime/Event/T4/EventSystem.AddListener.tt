@@ -43,9 +43,45 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
-        public static void <#= name #><#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false) where TE : Enum
+        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
-            <#= name #>(key.GetHashCode(), action, allowDuplicates);
+            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
+            if (RelayParams.TryGetValue(key, out var dictionary)) // 查找当前key的 事件列表
+                relay = dictionary.TryGetValue(typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName, out var obj) ? obj as RelayAction<#= i > 0 ? $"<{type}>" : "" #> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null)
+                RelayParams[key][typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
+            relay.<#= name #>(action, allowDuplicates);
+        }
+
+        /// <summary>
+        /// 添加<#= name == "AddListener" ? "事件侦听器" : "一次性事件侦听器" #>
+        /// </summary>
+        /// <param name="caller"> 调用者 </param>
+        /// <param name="key"> 事件键值 </param>
+        /// <param name="action"> 侦听器 </param>
+        /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
+        {
+            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
+            if (RelayParams.TryGetValue(key, out var dictionary)) 
+                relay = dictionary.TryGetValue(typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName, out var obj) ? obj as RelayAction<#= i > 0 ? $"<{type}>" : "" #> : null;
+            else
+                RelayParams[key] = new Dictionary<string, object>();
+
+            if (relay == null) 
+                RelayParams[key][typeof(RelayAction<#= i > 0 ? $"<{type}>" : "" #>).FullName] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
+
+            if (relay.<#= name #>(action, caller, allowDuplicates))
+            {
+                if (ListenersByCaller.TryGetValue(caller, out var list))
+                {
+                    if (!list.Contains(key)) list.Add(key);
+                }
+                else ListenersByCaller[caller] = new List<int> { key };
+            }
         }
 
         /// <summary>
@@ -54,12 +90,9 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
-        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
+        public static void <#= name #><#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false) where TE : Enum
         {
-            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
-            if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
-            relay.<#= name #>(action, allowDuplicates);
+            <#= name #>(key.GetHashCode(), action, allowDuplicates);
         }
 
         /// <summary>
@@ -84,28 +117,6 @@ namespace AIO
         public static void <#= name #><#= i > 0 ? $"<TE, {type}>" : "<TE>" #>(object caller, TE key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false) where TE : Enum
         {
             <#= name #>(caller, key.GetHashCode(), action, allowDuplicates);
-        }
-
-        /// <summary>
-        /// 添加<#= name == "AddListener" ? "事件侦听器" : "一次性事件侦听器" #>
-        /// </summary>
-        /// <param name="caller"> 调用者 </param>
-        /// <param name="key"> 事件键值 </param>
-        /// <param name="action"> 侦听器 </param>
-        /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
-        public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
-        {
-            RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
-            if (RelayParams.TryGetValue(key, out var value)) relay = value as RelayAction<#= i > 0 ? $"<{type}>" : "" #>;
-            if (relay == null) RelayParams[key] = relay = new RelayAction<#= i > 0 ? $"<{type}>" : "" #>();
-            if (relay.<#= name #>(action, caller, allowDuplicates))
-            {
-                if (ListenersByCaller.TryGetValue(caller, out var list))
-                {
-                    if (!list.Contains(key)) list.Add(key);
-                }
-                else ListenersByCaller[caller] = new List<int> { key };
-            }
         }
 
         /// <summary>
