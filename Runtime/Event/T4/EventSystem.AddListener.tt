@@ -12,6 +12,7 @@
 using System;
 using AIO.UEngine;
 using System.Collections.Generic;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -43,6 +44,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
@@ -63,6 +65,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, int key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             RelayAction<#= i > 0 ? $"<{type}>" : "" #> relay = null;
@@ -90,6 +93,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(Enum key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             <#= name #>(key.GetHashCode(), action, allowDuplicates);
@@ -101,6 +105,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(string key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -114,6 +119,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, Enum key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             <#= name #>(caller, key.GetHashCode(), action, allowDuplicates);
@@ -126,6 +132,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void <#= name #><#= i > 0 ? $"<{type}>" : "" #>(object caller, string key, Action<#= i > 0 ? $"<{type}>" : "" #> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;

@@ -36,6 +36,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
@@ -43,6 +44,7 @@ namespace AIO.UEngine
     /// 侦听器链接基类。
     /// </summary>
     /// <typeparam name="TDelegate"> 侦听器委托类型。 </typeparam>
+    [Preserve]
     public abstract class RelayBase<TDelegate> : IRelayLinkBase<TDelegate>
     where TDelegate : class
     {

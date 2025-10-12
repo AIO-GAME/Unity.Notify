@@ -10,6 +10,8 @@
 |||✩ - - - - - - - - - - |*/
 
 using System;
+using AIO.UEngine;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -32,23 +34,30 @@ namespace AIO
 #>
     #region EventHandler<#= i > 0 ? $"<{type}>" : "" #>
 
+    [Preserve]
     public abstract class EventHandler<#= i > 0 ? $"<{type}> " : "" #> : IEventHandler
     {
+        [Preserve]
         public abstract int Key { get; }
-    
+
+        [Preserve]
         public EventHandler() { EventSystem.AddListener<#= i > 0 ? $"<{type}>" : "" #>(Key, Invoke); }
 
+        [Preserve]
         protected abstract void Invoke(<#= param #>);
 
         #region Overrides of Object
 
+        [Preserve]
         public sealed override bool Equals(object obj) => obj is EventHandler<#= i > 0 ? $"<{type}> " : " " #>handler && handler.Key == Key;
 
+        [Preserve]
         public sealed override string ToString() => string.Concat
             (Key, ":(",
              <#= tostring #>, 
              ")");
 
+        [Preserve]
         public sealed override int GetHashCode() => Key.GetHashCode()<#= i > 0 ? $"\n                                                 {hash};" : ";" #> 
 
         #endregion

@@ -1,18 +1,24 @@
 using System;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
+    [Preserve]
     public interface IRelayLinkEventArgs : IRelayLinkBase<Action> { }
 
+    [Preserve]
     internal class RelayEventArgsLink : RelayLinkBase<Action>, IRelayLinkEventArgs
     {
         public RelayEventArgsLink(RelayBase<Action> relay) : base(relay) { }
     }
 
+    [Preserve]
     public class RelayEventArgs : RelayBase<Action>, IRelayLinkEventArgs
     {
+        [Preserve]
         private IRelayLinkEventArgs link = null;
 
+        [Preserve]
         public IRelayLinkEventArgs Link
         {
             get
@@ -24,6 +30,7 @@ namespace AIO.UEngine
             }
         }
 
+        [Preserve]
         public void Dispatch()
         {
             for (var i = Count; i > 0; --i)
@@ -44,11 +51,16 @@ namespace AIO.UEngine
     /// <summary>
     /// 事件对象 用于派发事件传参数使用
     /// </summary>
+    [Preserve]
     public class EventArgs
     {
-        public static EventArgs Create(string type)              { return new EventArgs(type); }
+        [Preserve]
+        public static EventArgs Create(string type) { return new EventArgs(type); }
+
+        [Preserve]
         public static EventArgs Create(string type, object data) { return new EventArgs(type, data); }
 
+        [Preserve]
         public static T Create<T>(string type)
         where T : EventArgs, new()
         {
@@ -57,7 +69,8 @@ namespace AIO.UEngine
             if (eventArgs != null) eventArgs.Type = type;
             return eventArgs;
         }
-        
+
+        [Preserve]
         public static T Create<T>(string type, object data)
         where T : EventArgs, new()
         {
@@ -85,32 +98,38 @@ namespace AIO.UEngine
         /// <summary>
         /// 派发事件夹带的普通参数
         /// </summary>
+        [Preserve]
         public object Data;
 
         /// <summary>
         /// 事件类型
         /// </summary>
+        [Preserve]
         public string Type;
 
         /// <summary>
         /// 是否停止事件派发
         /// </summary>
+        [Preserve]
         public bool IsPropagationImmediateStopped;
 
         /// <summary>
         /// 流转传递参数（用于高优先级往低优先级传递）
         /// </summary>
+        [Preserve]
         public object TransmitData;
 
         /// <summary>
         /// 停止一个事件的派发
         /// </summary>
+        [Preserve]
         public void StopImmediatePropagation() { IsPropagationImmediateStopped = true; }
 
         /// <summary>
         /// 设置流转数据
         /// </summary>
         /// <param name="data">需要流转的数据</param>
+        [Preserve]
         public void SetTransmitData(object data) { TransmitData = data; }
     }
 }

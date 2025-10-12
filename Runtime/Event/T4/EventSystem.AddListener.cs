@@ -7,6 +7,7 @@
 using System;
 using AIO.UEngine;
 using System.Collections.Generic;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -21,6 +22,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(int key, Action action, bool allowDuplicates = false)
         {
             RelayAction relay = null;
@@ -41,6 +43,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(object caller, int key, Action action, bool allowDuplicates = false)
         {
             RelayAction relay = null;
@@ -68,6 +71,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(Enum key, Action action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -79,6 +83,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(string key, Action action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -92,6 +97,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(object caller, Enum key, Action action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -104,6 +110,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener(object caller, string key, Action action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -116,6 +123,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(int key, Action action, bool allowDuplicates = false)
         {
             RelayAction relay = null;
@@ -136,6 +144,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(object caller, int key, Action action, bool allowDuplicates = false)
         {
             RelayAction relay = null;
@@ -163,6 +172,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(Enum key, Action action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -174,6 +184,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(string key, Action action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -187,6 +198,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(object caller, Enum key, Action action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -199,6 +211,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce(object caller, string key, Action action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -214,6 +227,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(int key, Action<T1> action, bool allowDuplicates = false)
         {
             RelayAction<T1> relay = null;
@@ -234,6 +248,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(object caller, int key, Action<T1> action, bool allowDuplicates = false)
         {
             RelayAction<T1> relay = null;
@@ -261,6 +276,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(Enum key, Action<T1> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -272,6 +288,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(string key, Action<T1> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -285,6 +302,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(object caller, Enum key, Action<T1> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -297,6 +315,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1>(object caller, string key, Action<T1> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -309,6 +328,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(int key, Action<T1> action, bool allowDuplicates = false)
         {
             RelayAction<T1> relay = null;
@@ -329,6 +349,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(object caller, int key, Action<T1> action, bool allowDuplicates = false)
         {
             RelayAction<T1> relay = null;
@@ -356,6 +377,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(Enum key, Action<T1> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -367,6 +389,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(string key, Action<T1> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -380,6 +403,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(object caller, Enum key, Action<T1> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -392,6 +416,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1>(object caller, string key, Action<T1> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -407,6 +432,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2> relay = null;
@@ -427,6 +453,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(object caller, int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2> relay = null;
@@ -454,6 +481,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(Enum key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -465,6 +493,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(string key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -478,6 +507,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(object caller, Enum key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -490,6 +520,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2>(object caller, string key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -502,6 +533,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2> relay = null;
@@ -522,6 +554,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(object caller, int key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2> relay = null;
@@ -549,6 +582,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(Enum key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -560,6 +594,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(string key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -573,6 +608,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(object caller, Enum key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -585,6 +621,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2>(object caller, string key, Action<T1, T2> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -600,6 +637,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3> relay = null;
@@ -620,6 +658,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(object caller, int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3> relay = null;
@@ -647,6 +686,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(Enum key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -658,6 +698,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(string key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -671,6 +712,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(object caller, Enum key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -683,6 +725,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3>(object caller, string key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -695,6 +738,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3> relay = null;
@@ -715,6 +759,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(object caller, int key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3> relay = null;
@@ -742,6 +787,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(Enum key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -753,6 +799,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(string key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -766,6 +813,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(object caller, Enum key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -778,6 +826,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3>(object caller, string key, Action<T1, T2, T3> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -793,6 +842,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4> relay = null;
@@ -813,6 +863,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(object caller, int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4> relay = null;
@@ -840,6 +891,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(Enum key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -851,6 +903,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(string key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -864,6 +917,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(object caller, Enum key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -876,6 +930,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4>(object caller, string key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -888,6 +943,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4> relay = null;
@@ -908,6 +964,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(object caller, int key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4> relay = null;
@@ -935,6 +992,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(Enum key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -946,6 +1004,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(string key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -959,6 +1018,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(object caller, Enum key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -971,6 +1031,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4>(object caller, string key, Action<T1, T2, T3, T4> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -986,6 +1047,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5> relay = null;
@@ -1006,6 +1068,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(object caller, int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5> relay = null;
@@ -1033,6 +1096,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(Enum key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -1044,6 +1108,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(string key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1057,6 +1122,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(object caller, Enum key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1069,6 +1135,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5>(object caller, string key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1081,6 +1148,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5> relay = null;
@@ -1101,6 +1169,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(object caller, int key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5> relay = null;
@@ -1128,6 +1197,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(Enum key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -1139,6 +1209,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(string key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1152,6 +1223,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(object caller, Enum key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1164,6 +1236,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5>(object caller, string key, Action<T1, T2, T3, T4, T5> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1179,6 +1252,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
@@ -1199,6 +1273,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(object caller, int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
@@ -1226,6 +1301,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(Enum key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -1237,6 +1313,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(string key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1250,6 +1327,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1262,6 +1340,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6>(object caller, string key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1274,6 +1353,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
@@ -1294,6 +1374,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(object caller, int key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6> relay = null;
@@ -1321,6 +1402,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(Enum key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -1332,6 +1414,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(string key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1345,6 +1428,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1357,6 +1441,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6>(object caller, string key, Action<T1, T2, T3, T4, T5, T6> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1372,6 +1457,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
@@ -1392,6 +1478,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
@@ -1419,6 +1506,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -1430,6 +1518,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(string key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1443,6 +1532,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1455,6 +1545,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1467,6 +1558,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
@@ -1487,6 +1579,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7> relay = null;
@@ -1514,6 +1607,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -1525,6 +1619,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(string key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1538,6 +1633,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1550,6 +1646,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1565,6 +1662,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
@@ -1585,6 +1683,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
@@ -1612,6 +1711,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -1623,6 +1723,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1636,6 +1737,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1648,6 +1750,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1660,6 +1763,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
@@ -1680,6 +1784,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8> relay = null;
@@ -1707,6 +1812,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -1718,6 +1824,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1731,6 +1838,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1743,6 +1851,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1758,6 +1867,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
@@ -1778,6 +1888,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
@@ -1805,6 +1916,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             AddListener(key.GetHashCode(), action, allowDuplicates);
@@ -1816,6 +1928,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1829,6 +1942,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             AddListener(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1841,6 +1955,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1853,6 +1968,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
@@ -1873,6 +1989,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             RelayAction<T1, T2, T3, T4, T5, T6, T7, T8, T9> relay = null;
@@ -1900,6 +2017,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             AddOnce(key.GetHashCode(), action, allowDuplicates);
@@ -1911,6 +2029,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -1924,6 +2043,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, Enum key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
@@ -1936,6 +2056,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 则不允许重复添加 </param>
+        [Preserve]
         public static void AddOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(object caller, string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;

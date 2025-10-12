@@ -6,6 +6,7 @@
 
 using System;
 using AIO.UEngine;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -19,6 +20,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE>(TE key, Action action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -29,6 +31,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener(int key, Action action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -43,6 +46,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener(string key, Action action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -54,6 +58,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE>(TE key, Action action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -64,6 +69,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce(int key, Action action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -78,6 +84,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce(string key, Action action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -92,6 +99,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1>(TE key, Action<T1> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -102,6 +110,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1>(int key, Action<T1> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -116,6 +125,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1>(string key, Action<T1> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -127,6 +137,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1>(TE key, Action<T1> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -137,6 +148,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1>(int key, Action<T1> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -151,6 +163,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1>(string key, Action<T1> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -165,6 +178,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2>(TE key, Action<T1, T2> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -175,6 +189,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2>(int key, Action<T1, T2> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -189,6 +204,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2>(string key, Action<T1, T2> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -200,6 +216,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2>(TE key, Action<T1, T2> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -210,6 +227,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2>(int key, Action<T1, T2> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -224,6 +242,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2>(string key, Action<T1, T2> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -238,6 +257,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3>(TE key, Action<T1, T2, T3> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -248,6 +268,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3>(int key, Action<T1, T2, T3> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -262,6 +283,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3>(string key, Action<T1, T2, T3> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -273,6 +295,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3>(TE key, Action<T1, T2, T3> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -283,6 +306,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3>(int key, Action<T1, T2, T3> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -297,6 +321,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3>(string key, Action<T1, T2, T3> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -311,6 +336,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4>(TE key, Action<T1, T2, T3, T4> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -321,6 +347,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -335,6 +362,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4>(string key, Action<T1, T2, T3, T4> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -346,6 +374,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4>(TE key, Action<T1, T2, T3, T4> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -356,6 +385,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4>(int key, Action<T1, T2, T3, T4> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -370,6 +400,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4>(string key, Action<T1, T2, T3, T4> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -384,6 +415,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4, T5>(TE key, Action<T1, T2, T3, T4, T5> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -394,6 +426,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -408,6 +441,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5>(string key, Action<T1, T2, T3, T4, T5> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -419,6 +453,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4, T5>(TE key, Action<T1, T2, T3, T4, T5> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -429,6 +464,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5>(int key, Action<T1, T2, T3, T4, T5> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -443,6 +479,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5>(string key, Action<T1, T2, T3, T4, T5> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -457,6 +494,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4, T5, T6>(TE key, Action<T1, T2, T3, T4, T5, T6> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -467,6 +505,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -481,6 +520,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6>(string key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -492,6 +532,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4, T5, T6>(TE key, Action<T1, T2, T3, T4, T5, T6> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -502,6 +543,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6>(int key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -516,6 +558,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6>(string key, Action<T1, T2, T3, T4, T5, T6> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -530,6 +573,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4, T5, T6, T7>(TE key, Action<T1, T2, T3, T4, T5, T6, T7> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -540,6 +584,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -554,6 +599,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7>(string key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -565,6 +611,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4, T5, T6, T7>(TE key, Action<T1, T2, T3, T4, T5, T6, T7> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -575,6 +622,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7>(int key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -589,6 +637,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7>(string key, Action<T1, T2, T3, T4, T5, T6, T7> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -603,6 +652,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4, T5, T6, T7, T8>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -613,6 +663,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -627,6 +678,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -638,6 +690,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4, T5, T6, T7, T8>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -648,6 +701,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -662,6 +716,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -676,6 +731,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE, T1, T2, T3, T4, T5, T6, T7, T8, T9>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action) where TE : Enum
         {
             RemoveListener(key.GetHashCode(), action);
@@ -686,6 +742,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -700,6 +757,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -711,6 +769,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE, T1, T2, T3, T4, T5, T6, T7, T8, T9>(TE key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action) where TE : Enum
         {
             RemoveOnce(key.GetHashCode(), action);
@@ -721,6 +780,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(int key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -735,6 +795,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string key, Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         {
             if (string.IsNullOrEmpty(key)) return;

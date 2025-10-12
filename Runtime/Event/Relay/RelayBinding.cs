@@ -1,7 +1,10 @@
 ﻿#region Implementation
 
+using UnityEngine.Scripting;
+
 namespace AIO.UEngine
 {
+    [Preserve]
     public class RelayBinding<TDelegate> : IRelayBinding
     where TDelegate : class
     {

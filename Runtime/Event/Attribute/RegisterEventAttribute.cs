@@ -1,12 +1,13 @@
 ﻿using System;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
     /// <summary>
     /// 注册事件
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
-    public class RegisterEventAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Class)] [Preserve]
+    public class RegisterEventAttribute : PreserveAttribute
     {
         public int Key { get; }
 

@@ -1,18 +1,24 @@
 using System;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
+    [Preserve]
     public interface IRelayLinkDelegate : IRelayLinkBase<Delegate> { }
 
+    [Preserve]
     public class RelayDelegateLink : RelayLinkBase<Delegate>, IRelayLinkDelegate
     {
         public RelayDelegateLink(RelayBase<Delegate> relay) : base(relay) { }
     }
 
+    [Preserve]
     public class RelayDelegate : RelayBase<Delegate>, IRelayLinkDelegate
     {
+        [Preserve]
         private IRelayLinkDelegate link = null;
 
+        [Preserve]
         public IRelayLinkDelegate Link
         {
             get
@@ -24,6 +30,7 @@ namespace AIO.UEngine
             }
         }
 
+        [Preserve]
         public void Dispatch()
         {
             for (var i = Count; i > 0; --i)

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using AIO.UEngine;
+using UnityEngine.Scripting;
 using EventArgs = System.EventArgs;
 
 namespace AIO
 {
+    [Preserve]
     public static partial class EventSystem
     {
         private static readonly string EventArgsFullName = typeof(RelayAction<EventArgs>).FullName;
@@ -17,6 +19,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates"> 如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddOnce(int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
@@ -37,6 +40,7 @@ namespace AIO
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <typeparam name="TE"> 枚举类型 </typeparam>
+        [Preserve]
         public static void AddOnce<TE>(TE key, Action<EventArgs> action, bool allowDuplicates = false)
         where TE : Enum => AddOnce(key.GetHashCode(), action, allowDuplicates);
 
@@ -46,6 +50,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddOnce(string key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -59,6 +64,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddOnce(object caller, int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
@@ -84,6 +90,7 @@ namespace AIO
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <typeparam name="TE"> 枚举类型 </typeparam>
+        [Preserve]
         public static void AddOnce<TE>(object caller, TE key, Action<EventArgs> action, bool allowDuplicates = false)
         where TE : Enum => AddOnce(caller, key.GetHashCode(), action, allowDuplicates);
 
@@ -94,6 +101,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddOnce(object caller, string key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -110,6 +118,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddListener(int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
@@ -130,6 +139,7 @@ namespace AIO
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <typeparam name="TE"> 枚举类型 </typeparam>
+        [Preserve]
         public static void AddListener<TE>(TE key, Action<EventArgs> action, bool allowDuplicates = false)
         where TE : Enum => AddListener(key.GetHashCode(), action, allowDuplicates);
 
@@ -139,6 +149,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddListener(string key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -153,6 +164,7 @@ namespace AIO
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <typeparam name="TE"> 枚举类型 </typeparam>
+        [Preserve]
         public static void AddListener<TE>(object caller, TE key, Action<EventArgs> action, bool allowDuplicates = false)
         where TE : Enum => AddListener(caller, key.GetHashCode(), action, allowDuplicates);
 
@@ -163,6 +175,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddListener(object caller, string key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -176,6 +189,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
+        [Preserve]
         public static void AddListener(object caller, int key, Action<EventArgs> action, bool allowDuplicates = false)
         {
             RelayAction<EventArgs> relay = null;
@@ -201,6 +215,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveListener(int key)
         {
             if (!RelayParams.TryGetValue(key, out var dictionary)) return;
@@ -214,6 +229,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveListener(string key)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -224,6 +240,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveListener<TE>(TE key)
         where TE : Enum => RemoveListener(key.GetHashCode());
 
@@ -232,6 +249,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener(int key, Action<EventArgs> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -244,6 +262,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener<TE>(TE key, Action<EventArgs> action)
         where TE : Enum => RemoveListener(key.GetHashCode(), action);
 
@@ -252,6 +271,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveListener(string key, Action<EventArgs> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -262,6 +282,7 @@ namespace AIO
         /// 移除指定事件键值的 一次性侦听器。
         /// </summary>
         /// <param name="caller"> 调用者 </param>
+        [Preserve]
         public static void RemoveListener(object caller)
         {
             if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;
@@ -284,6 +305,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveOnce(int key)
         {
             if (!RelayParams.TryGetValue(key, out var dictionary)) return;
@@ -297,6 +319,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveOnce(string key)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -307,6 +330,7 @@ namespace AIO
         /// 移除指定事件键值的 持久侦听器。
         /// </summary>
         /// <param name="key"> 事件键值 </param>
+        [Preserve]
         public static void RemoveOnce<TE>(TE key)
         where TE : Enum => RemoveOnce(key.GetHashCode());
 
@@ -315,6 +339,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce<TE>(TE key, Action<EventArgs> action)
         where TE : Enum => RemoveOnce(key.GetHashCode(), action);
 
@@ -323,6 +348,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce(int key, Action<EventArgs> action)
         {
             if (!RelayParams.TryGetValue(key, out var value)) return;
@@ -337,6 +363,7 @@ namespace AIO
         /// </summary>
         /// <param name="key"> 事件键值 </param>
         /// <param name="action"> 侦听器 </param>
+        [Preserve]
         public static void RemoveOnce(string key, Action<EventArgs> action)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -347,6 +374,7 @@ namespace AIO
         /// 移除指定事件键值的 一次性侦听器。
         /// </summary>
         /// <param name="caller"> 调用者 </param>
+        [Preserve]
         public static void RemoveOnce(object caller)
         {
             if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;
@@ -371,6 +399,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="persistent"> 如果为 <c>true</c>, 移除持久侦听器。 </param>
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
+        [Preserve]
         public static void RemoveAllListener(int key, bool persistent = true, bool oneTime = true)
         {
             if (!RelayParams.TryGetValue(key, out var collection)) return;
@@ -386,6 +415,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="persistent"> 如果为 <c>true</c>, 移除持久侦听器。 </param>
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
+        [Preserve]
         public static void RemoveAllListener<TE>(TE key, bool persistent = true, bool oneTime = true)
         where TE : Enum
         {
@@ -398,6 +428,7 @@ namespace AIO
         /// <param name="key"> 事件键值 </param>
         /// <param name="persistent"> 如果为 <c>true</c>, 移除持久侦听器。 </param>
         /// <param name="oneTime"> 如果为 <c>true</c>, 移除一次性侦听器。 </param>
+        [Preserve]
         public static void RemoveAllListener(string key, bool persistent = true, bool oneTime = true)
         {
             if (string.IsNullOrEmpty(key)) return;
@@ -408,6 +439,7 @@ namespace AIO
         /// 移除所有侦听器。
         /// </summary>
         /// <param name="caller"> 调用者 </param>
+        [Preserve]
         public static void RemoveAllListener(object caller)
         {
             if (!ListenersByCaller.TryGetValue(caller, out var collection)) return;

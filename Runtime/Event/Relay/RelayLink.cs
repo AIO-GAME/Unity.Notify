@@ -1,10 +1,13 @@
 ﻿using System;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
+    [Preserve]
     public abstract class RelayLinkBase<TDelegate> : IRelayLinkBase<TDelegate>
     where TDelegate : class
     {
+        [Preserve]
         protected RelayBase<TDelegate> Relay { get; }
 
         #region Constructors

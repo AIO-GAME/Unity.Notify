@@ -1,15 +1,20 @@
-﻿namespace AIO.UEngine
+﻿using UnityEngine.Scripting;
+
+namespace AIO.UEngine
 {
+    [Preserve]
     public interface IRelayLinkBase
     {
         /// <summary>
         /// 这个实例当前有多少个持久侦听器
         /// </summary>
+        [Preserve]
         uint ListenerCount { get; }
 
         /// <summary>
         /// 这个实例当前有多少个一次性侦听器，在调度之后，所有当前的一次性侦听器都会自动删除。
         /// </summary>
+        [Preserve]
         uint OneTimeListenersCount { get; }
 
         /// <summary>
@@ -18,6 +23,7 @@
         /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
         /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        [Preserve]
         void RemoveAll(bool persistent = true, bool oneTime = true);
 
         /// <summary>
@@ -26,6 +32,7 @@
         /// <param name="caller">调用者</param>
         /// <param name="persistent">如果为 <c>true</c>, 移除持久侦听器。</param>
         /// <param name="oneTime">如果为 <c>true</c>, 移除一次性侦听器。</param>
+        [Preserve]
         void RemoveAll(object caller, bool persistent = true, bool oneTime = true);
     }
 
@@ -33,6 +40,7 @@
     /// 侦听器链接基类。
     /// </summary>
     /// <typeparam name="TDelegate"> 侦听器委托类型。 </typeparam>
+    [Preserve]
     public interface IRelayLinkBase<in TDelegate> : IRelayLinkBase
     where TDelegate : class
     {
@@ -41,6 +49,7 @@
         /// </summary>
         /// <param name="listener">监听器</param>
         /// <returns>如果是持久侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool Contains(TDelegate listener);
 
         /// <summary>
@@ -49,6 +58,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="caller">调用者</param>
         /// <returns>如果是持久侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool Contains(TDelegate listener, object caller);
 
         /// <summary>
@@ -58,6 +68,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在持久侦听器。</param>
         /// <returns>如果成功添加侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool AddListener(TDelegate listener, bool allowDuplicates = false);
 
         /// <summary>
@@ -67,6 +78,7 @@
         /// <param name="caller">调用者</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在持久侦听器。</param>
         /// <returns>如果成功添加侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool AddListener(TDelegate listener, object caller, bool allowDuplicates = false);
 
         /// <summary>
@@ -77,6 +89,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在持久侦听器。</param>
         /// <returns>如果成功绑定侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         IRelayBinding BindListener(TDelegate listener, bool allowDuplicates = false);
 
         /// <summary>
@@ -88,6 +101,7 @@
         /// <param name="caller">调用者</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在持久侦听器。</param>
         /// <returns>如果成功绑定侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         IRelayBinding BindListener(TDelegate listener, object caller, bool allowDuplicates = false);
 
         /// <summary>
@@ -97,6 +111,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <returns>如果成功添加侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool AddOnce(TDelegate listener, bool allowDuplicates = false);
 
         /// <summary>
@@ -107,6 +122,7 @@
         /// <param name="caller">调用者</param>
         /// <param name="allowDuplicates">如果 <c>false</c>, 检查是否已经存在一次性侦听器。</param>
         /// <returns>如果成功添加侦听器 <c>True</c>，否则为 <c>false</c>。</returns>
+        [Preserve]
         bool AddOnce(TDelegate listener, object caller, bool allowDuplicates = false);
 
         /// <summary>
@@ -115,6 +131,7 @@
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
         /// <param name="listener">监听器</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        [Preserve]
         bool RemoveListener(TDelegate listener);
 
         /// <summary>
@@ -123,6 +140,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="caller">调用者</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        [Preserve]
         bool RemoveListener(TDelegate listener, object caller);
 
         /// <summary>
@@ -130,6 +148,7 @@
         /// </summary>
         /// <param name="listener">监听器</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        [Preserve]
         bool RemoveOnce(TDelegate listener);
 
         /// <summary>
@@ -138,6 +157,7 @@
         /// <param name="listener">监听器</param>
         /// <param name="caller">调用者</param>
         /// <returns>如果成功移除侦听器 <c>true</c>, otherwise <c>false</c>.</returns>
+        [Preserve]
         bool RemoveOnce(TDelegate listener, object caller);
     }
 }

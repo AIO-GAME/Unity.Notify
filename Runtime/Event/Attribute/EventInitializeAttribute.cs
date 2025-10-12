@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Scripting;
 
 namespace AIO.UEngine
 {
@@ -6,5 +7,6 @@ namespace AIO.UEngine
     /// 程序集属性
     /// </summary>
     [AttributeUsage(AttributeTargets.Assembly)]
-    public class EventInitializeAttribute : Attribute { }
+    [Preserve]
+    public class EventInitializeAttribute : PreserveAttribute { }
 }
